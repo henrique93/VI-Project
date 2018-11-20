@@ -32,7 +32,7 @@ function dragstarted(d){
 }
 
 function dragged(d){
-	d3.select(this).attr("x", d3.event.x);
+	d3.select(this).attr("x", d.x = d3.event.x);
 }
 
 function dragended(d){
@@ -146,11 +146,14 @@ function gen_bubblechart() {
 		.call(xaxis);
 
 	svg.selectAll("circle")
-		.data(dataset)
+			.data(dataset)
 		.enter().append("circle")
-			/*.on("mouseover", function(d) {
-			dispatch.call("movieEnter",d , d);
-			})*/
+		.on("mouseover", function(d) {
+			console.log("aaaaaaaaaaaa");
+			var test =d3.select("circle")
+			test.attr("fill-opacity","100")
+			//dispatch.call("movieEnter",d , d);
+			})
 		.attr("r", function(d){ 
 			console.log(d);
 			return rscale(d.revenue);})
