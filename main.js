@@ -164,6 +164,7 @@ function gen_bubblechart() {
 		})
 		.attr("cy", function(d){ return hscale(d.score);})
 		.attr("title", function(d){ return d.title;});
+}
 
 //////////////////////////////////////////////////////////////
 ///////////////////////// ???????? ///////////////////////////
