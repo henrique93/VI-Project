@@ -27,10 +27,11 @@ div {
 #RadarChart { 
 	height: 45%;
 	width: 40%; 
-	background: #444;
+	background: #fff;
 }
 #Timeline {
 	height: 10%;
 	width: 100%; 
 	background: #fff;
 }
+
