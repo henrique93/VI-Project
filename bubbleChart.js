@@ -42,43 +42,53 @@ d3.csv("MovieData.csv").then(function(csv) {
     })*/
     .on("customSeriesClick", function(d) {
         var select = document.getElementById(d.values[0].title).firstElementChild.firstElementChild
+        var update = 0;
+        console.log(d.values.map)
         console.log(select);
         if (select1 == null && select != select2 && select != select3) {
             select1 = select;
             select1.setAttribute("stroke", "rgb(93, 165, 218)");
             select1.setAttribute("stroke-width", "5px");
+            update = 1;
         }
         else if (select1 == select) {
             select1.setAttribute("stroke", "white");
             select1.setAttribute("stroke-width", "1px");
             select1 = null;
+            update = 1;
         }
         else if (select2 == null && select != select1 && select != select3) {
             select2 = select;
             select2.setAttribute("stroke", "rgb(250, 164, 58)");
             select2.setAttribute("stroke-width", "5px");
+            update = 1;
         }
         else if (select2 == select) {
             select2.setAttribute("stroke", "white");
             select2.setAttribute("stroke-width", "1px");
             select2 = null;
+            update = 1;
         }
         else if (select3 == null && select != select1 && select != select2) {
             select3 = select;
             select3.setAttribute("stroke", "rgb(96, 189, 104)");
             select3.setAttribute("stroke-width", "5px");
+            update = 1;
         }
         else if (select3 == select) {
             select3.setAttribute("stroke", "white");
             select3.setAttribute("stroke-width", "1px");
             select3 = null;
+            update = 1;
         }
         console.log("1: ", select1);
         console.log("2: ", select2);
         console.log("3: ", select3);
-      d3.select("#BubbleChart")
-        .datum(d)
-        .call(myChart);
+        if (update == 1) {
+            d3.select("#BubbleChart")
+                .datum(d)
+                .call(myChart);
+        }
     });
     if (select1 != null) {
         document.getElementById(d.values[0].title).firstElementChild.firstChild.style = select1
