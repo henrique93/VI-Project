@@ -2,29 +2,29 @@ var data = [
   {
     "key": "Monster Truck",
     "values": [
-      { "key": "Speed", "value": 5 },
-      { "key": "Durability", "value": 8 },
-      { "key": "Comfort", "value": 6 },
-      { "key": "Power", "value": 10 },
-      { "key": "Space", "value": 5 }
+      { "key": "Score", "value": 9 },
+      { "key": "Revenue", "value": 2 },
+      { "key": "Budget", "value": 3 },
+      { "key": "Runtime", "value": 7 },
+      { "key": "Popularity", "value": 4 }
     ]
   }, {
     "key": "Drag Racer",
     "values": [
-      { "key": "Speed", "value": 10 },
-      { "key": "Durability", "value": 3 },
-      { "key": "Comfort", "value": 4 },
-      { "key": "Power", "value": 9 },
-      { "key": "Space", "value": 2 }
+      { "key": "Score", "value": 3 },
+      { "key": "Revenue", "value": 2.6 },
+      { "key": "Budget", "value": 2 },
+      { "key": "Runtime", "value": 3 },
+      { "key": "Popularity", "value": 4.7 }
     ]
   }, {
     "key": "Family Saloon",
     "values": [
-      { "key": "Speed", "value": 7 },
-      { "key": "Durability", "value": 5 },
-      { "key": "Comfort", "value": 10 },
-      { "key": "Power", "value": 6 },
-      { "key": "Space", "value": 8 }
+      { "key": "Score", "value": 7.2 },
+      { "key": "Revenue", "value": 3 },
+      { "key": "Budget", "value": 2.8 },
+      { "key": "Runtime", "value": 4.3 },
+      { "key": "Popularity", "value": 6.1 }
     ]
   }];
 var colors = d3.ez.palette.categorical(1);

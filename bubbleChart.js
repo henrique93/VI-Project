@@ -1,3 +1,14 @@
+dateConvert = function(dateYMD) {
+      parser = d3.timeParse('%Y-%m-%d');
+      var dateISO = parser(dateYMD).toISOString();
+      var dateUnix = new Date(dateISO)/1000;
+      return dateUnix;
+    };
+
+var select1 = null;
+var select2 = null;
+var select3 = null;
+
 d3.csv("MovieData.csv").then(function(csv) {
     csv.forEach(function(d) {
         d.released = new Date(d.released);
@@ -9,16 +20,17 @@ d3.csv("MovieData.csv").then(function(csv) {
   // Rename keys
   var tmp = csv.map(function(d) {
     return {
-      "key": d.score,
+      "key": d.revenue,
       "value": d.revenue,
       "x": d.released,
       "y": d.score,
-      "series": d.score
+      "series": d.score,
+        "title": d.title
     };
   });
   // Nest Data
   var data = d3.nest().key(function(d) {
-    return d.score;
+    return d.title;
   }).entries(tmp);
   // Create chart base
   var myChart = d3.ez.base()
@@ -29,8 +41,48 @@ d3.csv("MovieData.csv").then(function(csv) {
       d3.select("#message").text(d.value);
     })*/
     .on("customSeriesClick", function(d) {
-      console.log(d);
+        var select = document.getElementById(d.values[0].title).firstElementChild.firstElementChild
+        console.log(select);
+        if (select1 == null && select != select2 && select != select3) {
+            select1 = select;
+            select1.setAttribute("stroke", "rgb(93, 165, 218)");
+            select1.setAttribute("stroke-width", "5px");
+        }
+        else if (select1 == select) {
+            select1.setAttribute("stroke", "white");
+            select1.setAttribute("stroke-width", "1px");
+            select1 = null;
+        }
+        else if (select2 == null && select != select1 && select != select3) {
+            select2 = select;
+            select2.setAttribute("stroke", "rgb(250, 164, 58)");
+            select2.setAttribute("stroke-width", "5px");
+        }
+        else if (select2 == select) {
+            select2.setAttribute("stroke", "white");
+            select2.setAttribute("stroke-width", "1px");
+            select2 = null;
+        }
+        else if (select3 == null && select != select1 && select != select2) {
+            select3 = select;
+            select3.setAttribute("stroke", "rgb(96, 189, 104)");
+            select3.setAttribute("stroke-width", "5px");
+        }
+        else if (select3 == select) {
+            select3.setAttribute("stroke", "white");
+            select3.setAttribute("stroke-width", "1px");
+            select3 = null;
+        }
+        console.log("1: ", select1);
+        console.log("2: ", select2);
+        console.log("3: ", select3);
+      d3.select("#BubbleChart")
+        .datum(d)
+        .call(myChart);
     });
+    if (select1 != null) {
+        document.getElementById(d.values[0].title).firstElementChild.firstChild.style = select1
+    }
   d3.select('#BubbleChart')
     .datum(data)
     .call(myChart);

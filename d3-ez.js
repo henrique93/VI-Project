@@ -1285,7 +1285,7 @@ function componentLabeledNode () {
 
 			var node = d3.select(this).classed(classed, true);
 
-			node.append("circle").attr("r", r).attr("fill-opacity", opacity).style("stroke", strokeColor).style("stroke-width", strokeWidth).style("fill", color);
+			node.append("circle").attr("r", r).attr("fill-opacity", opacity).attr("stroke", strokeColor).attr("stroke-width", strokeWidth).style("fill", color);
 
 			node.append("text").text(label).attr("dx", -r).attr("dy", -r).style("display", display).style("font-size", fontSize + "px").attr("alignment-baseline", "middle").style("text-anchor", "end");
 		});
@@ -5406,10 +5406,11 @@ function chartBubbleChart () {
 
 		// If the sizeScale has not been passed then attempt to calculate.
 		sizeScale = typeof sizeScale === "undefined" ? d3.scaleLinear().domain(sizeDomain).range([minRadius, maxRadius]) : sizeScale;
-
-		// X & Y Scales
-		xScale = d3.scaleLinear().domain(xDomain).range([0, chartW]).nice();
-
+        
+        //HARD CODED!!!!
+        var date1 = new Date("1985-01-01");
+        var date2 = new Date("2020-01-01");
+        xScale = d3.scaleTime().domain([date1, date2]).range([0, chartW]).nice();
 		yScale = d3.scaleLinear().domain(yDomain).range([chartH, 0]).nice();
 	}
 
