@@ -207,7 +207,7 @@ function base () {
 				if (typeof chart.sizeScale === "function") {
 					legend.sizeScale(chart.sizeScale());
 				}
-				canvas.select(".legendbox").attr("transform", "translate(" + (canvasW - legend.width()) + "," + title.height() + ")").call(legend);
+
 			}
 
 			// Title
@@ -6531,9 +6531,12 @@ function chartLineChart () {
 		colorScale = typeof colorScale === "undefined" ? d3.scaleOrdinal().domain(seriesNames).range(colors) : colorScale;
 
 		// X & Y Scales
-		xScale = d3.scaleTime().domain(dateDomain).range([0, chartW]);
+        //HARD CODED!!!!
+        var date1 = new Date("1985-01-01");
+        var date2 = new Date("2020-01-01");
+		xScale = d3.scaleTime().domain([date1, date2]).range([0, chartW]);
 
-		yScale = d3.scaleLinear().domain([0, maxValue]).range([chartH, 0]).nice();
+		yScale = d3.scaleLinear().domain([0, 40]).range([chartH, 0]).nice();
 	}
 
 	/**
@@ -6590,7 +6593,7 @@ function chartLineChart () {
 			seriesGroup.exit().remove();
 
 			// X Axis
-			var xAxis = d3.axisBottom(xScale).tickFormat(d3.timeFormat("%d-%b-%y"));
+			var xAxis = d3.axisBottom(xScale).tickFormat(d3.timeFormat("%Y"));
 
 			chart.select(".xAxis").attr("transform", "translate(0," + chartH + ")").call(xAxis).selectAll("text").style("text-anchor", "end").attr("dx", "-.8em").attr("dy", ".15em").attr("transform", "rotate(-65)");
 
@@ -7151,11 +7154,10 @@ function chartRadarChart () {
     chart.classed(classed, true).attr("transform", "translate(" + width / 2 + "," + height / 2 + ")").attr("width", chartW).attr("height", chartH).selectAll("g").data(layers).enter().append("g").attr("class", function (d) {
       return d;
     });
-
     selection.each(function (data) {
       // Initialise Data
       init(data);
-
+        
       // Create Circular Axis
       var circularAxis = component.circularAxis().radialScale(xScale).ringScale(yScale).radius(radius);
 
@@ -7166,7 +7168,7 @@ function chartRadarChart () {
       // Create Radars
       var seriesGroup = chart.select(".radarGroup").selectAll(".seriesGroup").data(data);
 
-      seriesGroup.enter().append("g").classed("seriesGroup", true).attr("fill", function (d) {
+      seriesGroup.enter().append("g").classed("seriesGroup", true).attr("id", "radar").attr("fill", function (d) {
         return colorScale(d.key);
       }).style("stroke", function (d) {
         return colorScale(d.key);

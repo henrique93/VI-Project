@@ -41,7 +41,7 @@ d3.csv("MovieData.csv").then(function(csv) {
       d3.select("#message").text(d.value);
     })*/
     .on("customSeriesClick", function(d) {
-        var select = document.getElementById(d.values[0].title).firstElementChild.firstElementChild
+        var select = document.getElementById(d.values[0].title).firstElementChild.firstElementChild;
         var update = 0;
         console.log(d.values.map)
         console.log(select);
@@ -81,11 +81,17 @@ d3.csv("MovieData.csv").then(function(csv) {
             select3 = null;
             update = 1;
         }
+        /*radar = document.getElementById("radar");
+        radar.style.display = "none";
+        console.log(radar);*/
         console.log("1: ", select1);
         console.log("2: ", select2);
         console.log("3: ", select3);
         if (update == 1) {
             d3.select("#BubbleChart")
+                .datum(d)
+                .call(myChart);
+            d3.select("#RadarChart")
                 .datum(d)
                 .call(myChart);
         }
