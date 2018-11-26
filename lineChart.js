@@ -19,7 +19,35 @@ d3.csv("MovieGenresperYears.csv").then(function(csv) {
         key: "Adventure",
         values: []
       }, {
-        key: "Drama",
+          key: "Animation",
+        values: []
+      }, {
+          key: "Biography",
+        values: []
+      }, {
+          key: "Comedy",
+        values: []
+      }, {
+          key: "Crime",
+        values: []
+      }, {
+          key: "Drama",
+        values: []
+      }, {
+          key: "Family",
+        values: []
+      }, {
+          key: "Fantasy",
+        values: []
+      }, {
+          key: "Horror",
+        values: []
+      }, {
+//FALTA MISTERY
+          key: "Romance",
+        values: []
+      }, {
+        key: "Sci-Fi",
         values: []
       }];
       d3.map(csv).values().forEach(function(d) {
@@ -31,9 +59,46 @@ d3.csv("MovieGenresperYears.csv").then(function(csv) {
           key: dateConvert(d.released),
           value: d['Adventure']
         });
-        data[2].values.push({
+          data[2].values.push({
+          key: dateConvert(d.released),
+          value: d['Animation']
+        });
+          data[3].values.push({
+          key: dateConvert(d.released),
+          value: d['Biography']
+        });
+          data[4].values.push({
+          key: dateConvert(d.released),
+          value: d['Comedy']
+        });
+          data[5].values.push({
+          key: dateConvert(d.released),
+          value: d['Crime']
+        });
+        data[6].values.push({
           key: dateConvert(d.released),
           value: d['Drama']
+        });
+          data[7].values.push({
+          key: dateConvert(d.released),
+          value: d['Family']
+        });
+          data[8].values.push({
+          key: dateConvert(d.released),
+          value: d['Fantasy']
+        });
+          data[9].values.push({
+          key: dateConvert(d.released),
+          value: d['Horror']
+        });
+
+          data[10].values.push({
+          key: dateConvert(d.released),
+          value: d['Romance']
+        });
+          data[11].values.push({
+          key: dateConvert(d.released),
+          value: d['Sci-Fi']
         });
       });
       // Create chart base
@@ -41,6 +106,8 @@ d3.csv("MovieGenresperYears.csv").then(function(csv) {
         .width(750)
         .height(300)
         .chart(chart)
+      .title(title)
+      .legend(legend)
         .on("customValueMouseOver", function(d) {
           d3.select("#message").text(d.value);
         })
@@ -50,4 +117,4 @@ d3.csv("MovieGenresperYears.csv").then(function(csv) {
       d3.select('#lineChart')
         .datum(data)
         .call(myChart);
-    });
+});
