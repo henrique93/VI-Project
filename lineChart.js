@@ -99,44 +99,27 @@ d3.csv("MovieGenresperYears.csv").then(function(csv) {
           key: dateConvert(d.released),
           value: d['Crime']
         });
-        data[6].values.push({
+          data[6].values.push({
           key: dateConvert(d.released),
           value: d['Animation']
         });
-        data[3].values.push({
-          key: dateConvert(d.released),
-          value: d['Biography']
-        });
-        data[4].values.push({
-          key: dateConvert(d.released),
-          value: d['Comedy']
-        });
-        data[5].values.push({
-          key: dateConvert(d.released),
-          value: d['Crime']
-        });
-        data[6].values.push({
-          key: dateConvert(d.released),
-          value: d['Drama']
-        });
-        data[7].values.push({
+          data[7].values.push({
           key: dateConvert(d.released),
           value: d['Family']
         });
-        data[8].values.push({
+          data[8].values.push({
           key: dateConvert(d.released),
           value: d['Fantasy']
         });
-        data[9].values.push({
+          data[9].values.push({
           key: dateConvert(d.released),
           value: d['Horror']
         });
-
-        data[10].values.push({
+          data[10].values.push({
           key: dateConvert(d.released),
           value: d['Romance']
         });
-        data[11].values.push({
+          data[11].values.push({
           key: dateConvert(d.released),
           value: d['Sci-Fi']
         });
