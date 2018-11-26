@@ -1,6 +1,7 @@
 html, body {
     font-family: verdana;
     height: 100%; 
+    width: 100%;
     padding: 0; 
     margin: 0; 
 }
@@ -9,29 +10,37 @@ div {
 	float: left; 
 }
 
-#LineChart { 
+#lineChart { 
 	height: 45%;
 	width: 60%; 
-	background: #DDD; 
+	background: #DDD;
+
+	font: 10px sans-serif;
 }
-#TagCloud { 
+
+#tagCloud { 
 	height: 45%;
 	width: 40%; 
 	background: #AAA; 
 }
-#BubbleChart {
-	height: 45%;
-	width: 60%; 
-	background: #777; 
+
+#bubbleChart {
+  height: 45%;
+  width: 60%; 
+  background: #777; 
 }
-#RadarChart { 
-	height: 45%;
-	width: 40%; 
-	background: #fff;
-}
-#Timeline {
-	height: 10%;
-	width: 100%; 
-	background: #fff;
+#radarChart { 
+  height: 45%;
+  width: 40%; 
+  background: #fff;
 }
 
+#timeLine { 
+  height: 10%;
+  width: 100%; 
+  background: #AAA; 
+}
+
+//////////////////////////////////////////////////////////////
+///////////////////////// TIMELINE ///////////////////////////
+//////////////////////////////////////////////////////////////
