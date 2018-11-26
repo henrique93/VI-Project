@@ -1,36 +1,53 @@
-dateConvert = function(dateYMD) {
-      parser = d3.timeParse('%Y-%m-%d');
-      var dateISO = parser(dateYMD).toISOString();
-      var dateUnix = new Date(dateISO)/1000;
-      return dateUnix;
-    };
-
-d3.csv("MovieGenresperYears.csv", function(error, csv) {
-  var colors = d3.ez.palette.categorical(3);
-  var chart = d3.ez.chart.lineChart()
-    .colors(colors)
-    .yAxisLabel("Quantity");
-  var legend = d3.ez.component.legend().title("Genre");
-  // Convert csv to d3-ez data format
-  dataLine = [ {key: "Action", values: []}, {key: "Drama", values: []}, {key: "Sci-Fi", values: []} ];
-  d3.map(csv).values().forEach(function(d) {
-    dataLine[3].values.push({key: d.Date, value: d['Action']});
-    dataLine[1].values.push({key: d.Date, value: d['Drama']});
-    dataLine[2].values.push({key: d.Date, value: d['Sci-Fi']});
-      console.log("aqui");
-      console.log(dataLine);
-  });
-
-  // Create chart base
-  var myChart = d3.ez.base()
-    .width(900)
-    .height(300)
-    .chart(chart)
-    .legend(legend)
-    .on("customValueMouseOver", function(d, i) {
+d3.csv("MovieGenresperYears.csv").then(function(csv) {
+      // Historical Exchange Rates Source: https://www.ofx.com/en-gb/forex-news/historical-exchange-rates/
+    console.log(csv);
+      var colors = d3.ez.palette.categorical(3);
+      var chart = d3.ez.chart.lineChart().colors(colors).yAxisLabel("Quantity");
+      var legend = d3.ez.component.legend().title("Genre");
+      var title = d3.ez.component.title().mainText("").subText("");
+      // Convert csv to d3-ez data format
+      dateConvert = function(dateYMD) {
+        parser = d3.timeParse('%Y');
+        var dateISO = parser(dateYMD).toISOString();
+        var dateUnix = new Date(dateISO) / 1000;
+        return dateUnix;
+      }
+      var data = [{
+        key: "Action",
+        values: []
+      }, {
+        key: "Adventure",
+        values: []
+      }, {
+        key: "Drama",
+        values: []
+      }];
+      d3.map(csv).values().forEach(function(d) {
+        data[0].values.push({
+          key: dateConvert(d.released),
+          value: d['Action']
+        });
+        data[1].values.push({
+          key: dateConvert(d.released),
+          value: d['Adventure']
+        });
+        data[2].values.push({
+          key: dateConvert(d.released),
+          value: d['Drama']
+        });
+      });
+      // Create chart base
+      var myChart = d3.ez.base()
+        .width(750)
+        .height(300)
+        .chart(chart)
+        .on("customValueMouseOver", function(d) {
+          d3.select("#message").text(d.value);
+        })
+        .on("customSeriesClick", function(d) {
+          console.log(d);
+        });
+      d3.select('#lineChart')
+        .datum(data)
+        .call(myChart);
     });
-
-  d3.select('#LineChart')
-    .datum(dataLine)
-    .call(myChart);
-});
