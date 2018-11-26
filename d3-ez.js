@@ -63,8 +63,8 @@ function componentTitle () {
   */
 	var mainText = "Title";
 	var subText = "Sub Title";
-	var height = 40;
-	var width = 200;
+	var height = 0;
+	var width = 0;
 
 	/**
   * Constructor
@@ -6590,7 +6590,7 @@ function chartLineChart () {
 			seriesGroup.exit().remove();
 
 			// X Axis
-			var xAxis = d3.axisBottom(xScale).tickFormat(d3.timeFormat("%d-%b-%y"));
+			var xAxis = d3.axisBottom(xScale).tickFormat(d3.timeFormat("%Y"));
 
 			chart.select(".xAxis").attr("transform", "translate(0," + chartH + ")").call(xAxis).selectAll("text").style("text-anchor", "end").attr("dx", "-.8em").attr("dy", ".15em").attr("transform", "rotate(-65)");
 
@@ -7151,11 +7151,10 @@ function chartRadarChart () {
     chart.classed(classed, true).attr("transform", "translate(" + width / 2 + "," + height / 2 + ")").attr("width", chartW).attr("height", chartH).selectAll("g").data(layers).enter().append("g").attr("class", function (d) {
       return d;
     });
-
     selection.each(function (data) {
       // Initialise Data
       init(data);
-
+        
       // Create Circular Axis
       var circularAxis = component.circularAxis().radialScale(xScale).ringScale(yScale).radius(radius);
 
@@ -7166,7 +7165,7 @@ function chartRadarChart () {
       // Create Radars
       var seriesGroup = chart.select(".radarGroup").selectAll(".seriesGroup").data(data);
 
-      seriesGroup.enter().append("g").classed("seriesGroup", true).attr("fill", function (d) {
+      seriesGroup.enter().append("g").classed("seriesGroup", true).attr("id", "radar").attr("fill", function (d) {
         return colorScale(d.key);
       }).style("stroke", function (d) {
         return colorScale(d.key);
