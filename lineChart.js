@@ -45,6 +45,22 @@ d3.csv("MovieGenresperYears.csv").then(function(csv) {
         key: "Horror",
         values: []
       }, {
+//FALTA MISTERY
+        key: "Romance",
+        values: []
+      }, {
+        key: "Sci-Fi",
+        values: []
+      }, {
+        key: "Family",
+        values: []
+      }, {
+        key: "Fantasy",
+        values: []
+      }, {
+        key: "Horror",
+        values: []
+      }, {
         key: "Mystery",
         values: []
       }, {
@@ -67,7 +83,23 @@ d3.csv("MovieGenresperYears.csv").then(function(csv) {
           key: dateConvert(d.released),
           value: d['Adventure']
         });
-        data[2].values.push({
+          data[2].values.push({
+          key: dateConvert(d.released),
+          value: d['Animation']
+        });
+          data[3].values.push({
+          key: dateConvert(d.released),
+          value: d['Biography']
+        });
+          data[4].values.push({
+          key: dateConvert(d.released),
+          value: d['Comedy']
+        });
+          data[5].values.push({
+          key: dateConvert(d.released),
+          value: d['Crime']
+        });
+        data[6].values.push({
           key: dateConvert(d.released),
           value: d['Animation']
         });
@@ -99,22 +131,15 @@ d3.csv("MovieGenresperYears.csv").then(function(csv) {
           key: dateConvert(d.released),
           value: d['Horror']
         });
+
         data[10].values.push({
-          key: dateConvert(d.released),
-          value: d['Mystery']
-        });
-        data[11].values.push({
           key: dateConvert(d.released),
           value: d['Romance']
         });
-        data[12].values.push({
+        data[11].values.push({
           key: dateConvert(d.released),
           value: d['Sci-Fi']
-        });/*
-        data[13].values.push({
-          key: dateConvert(d.released),
-          value: d['SUM']
-        });*/
+        });
       });
 
       // Create chart base
@@ -122,6 +147,8 @@ d3.csv("MovieGenresperYears.csv").then(function(csv) {
         .width(750)
         .height(300)
         .chart(chart)
+      .title(title)
+      .legend(legend)
         .on("customValueMouseOver", function(d) {
           d3.select("#message").text(d.value);
         })
@@ -132,4 +159,4 @@ d3.csv("MovieGenresperYears.csv").then(function(csv) {
       d3.select('#lineChart')
         .datum(data)
         .call(myChart);
-    });
+});

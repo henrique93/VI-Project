@@ -24,12 +24,12 @@ d3.csv("MovieData.csv").then(function(csv) {
       "value": d.revenue,
       "x": d.released,
       "y": d.score,
-      "series": d.score,
+      "series": d.genre,
         "title": d.title
     };
   });
   // Nest Data
-  var data = d3.nest().key(function(d) {
+  var dataBubble = d3.nest().key(function(d) {
     return d.title;
   }).entries(tmp);
   // Create chart base
@@ -100,6 +100,6 @@ d3.csv("MovieData.csv").then(function(csv) {
         document.getElementById(d.values[0].title).firstElementChild.firstChild.style = select1
     }
   d3.select('#BubbleChart')
-    .datum(data)
+    .datum(dataBubble)
     .call(myChart);
 });
