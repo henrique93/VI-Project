@@ -45,11 +45,16 @@ d3.csv("MovieGenresperYears.csv").then(function(csv) {
         key: "Horror",
         values: []
       }, {
-//FALTA MISTERY
-        key: "Romance",
+        key: "Mystery",
         values: []
       }, {
+        key: "Romance",
+        values: []
+          }, {
         key: "Sci-Fi",
+        values: []
+      }, {
+        key: "Total",
         values: []
       }];
       //Movie types: Action,Adventure,Animation,Biography,Comedy,Crime,Drama,Family,Fantasy,Horror,Mystery,Romance,Sci-Fi,SUM
@@ -96,11 +101,19 @@ d3.csv("MovieGenresperYears.csv").then(function(csv) {
         });
           data[10].values.push({
           key: dateConvert(d.released),
-          value: d['Romance']
+          value: d['Mystery']
         });
           data[11].values.push({
           key: dateConvert(d.released),
+          value: d['Romance']
+        });
+          data[12].values.push({
+          key: dateConvert(d.released),
           value: d['Sci-Fi']
+        });
+          data[13].values.push({
+          key: dateConvert(d.released),
+          value: d['SUM']
         });
       });
 
@@ -111,9 +124,9 @@ d3.csv("MovieGenresperYears.csv").then(function(csv) {
         .chart(chart)
         .title(title)
         .legend(legend)
-        /*.on("customValueMouseOver", function(d) {
-          d3.select("#message").text(d.value);
-        })*/
+        .on("customValueMouseOver", function(d) {
+          d3.select("#lineMessage").text(d.value);
+        })
         .on("customSeriesClick", function(d) {
           console.log(d);
         });

@@ -20,7 +20,7 @@ d3.csv("MovieData.csv").then(function(csv) {
   // Rename keys
   var tmp = csv.map(function(d) {
     return {
-      "key": d.revenue,
+      "key": d.title,
       "value": d.revenue,
       "x": d.released,
       "y": d.score,
@@ -37,9 +37,9 @@ d3.csv("MovieData.csv").then(function(csv) {
     .width(750)
     .height(300)
     .chart(chart)
-    /*.on("customValueMouseOver", function(d) {
-      d3.select("#message").text(d.value);
-    })*/
+    .on("customValueMouseOver", function(d) {
+      d3.select("#bubbleMessage").text(d.title);
+    })
     .on("customSeriesClick", function(d) {
         var select = document.getElementById(d.values[0].title).firstElementChild.firstElementChild;
         var update = 0;
