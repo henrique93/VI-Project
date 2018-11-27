@@ -106,14 +106,14 @@ d3.csv("MovieGenresperYears.csv").then(function(csv) {
 
       // Create chart base
       var myChart = d3.ez.base()
-        .width(750)
+        .width(850)
         .height(300)
         .chart(chart)
-      .title(title)
-      .legend(legend)
-        .on("customValueMouseOver", function(d) {
+        .title(title)
+        .legend(legend)
+        /*.on("customValueMouseOver", function(d) {
           d3.select("#message").text(d.value);
-        })
+        })*/
         .on("customSeriesClick", function(d) {
           console.log(d);
         });
