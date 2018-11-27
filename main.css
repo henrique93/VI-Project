@@ -7,19 +7,25 @@ html, body {
 }
 
 div { 
-	float: left; 
+	float: left;
+}
+
+#title {
+    height: 5%;
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    background: #fff;
 }
 
 #lineChart { 
-	height: 45%;
+	height: 40%;
 	width: 60%; 
 	background: #DDD;
-
-	font: 10px sans-serif;
 }
 
 #tagCloud { 
-	height: 45%;
+	height: 40%;
 	width: 40%; 
 	background: #AAA; 
 }

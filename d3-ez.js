@@ -184,8 +184,6 @@ function base () {
 			canvas = svg.append("g").classed("canvas", true);
 			canvas.append("g").classed("chartbox", true);
 			canvas.append("g").classed("legendbox", true);
-			canvas.append("g").classed("titlebox", true);
-			canvas.append("g").classed("creditbox", true);
 		} else {
 			canvas = svg.select(".canvas");
 		}
@@ -209,14 +207,6 @@ function base () {
 				}
 				canvas.select(".legendbox").attr("transform", "translate(" + (canvasW - legend.width()) + "," + title.height() + ")").call(legend);
 			}
-
-			// Title
-			if (title) {
-				canvas.select(".titlebox").attr("transform", "translate(" + canvasW / 2 + "," + 0 + ")").call(title);
-			}
-
-			// Credit Tag
-			canvas.select(".creditbox").attr("transform", "translate(" + canvasW + "," + canvasH + ")").call(creditTag);
 		});
 	}
 
@@ -295,9 +285,9 @@ var palette = {
 				//      Red        L.Blue     Green      Purple     Orange     Yellow     Brown      Pink       Grey
 				return ["#fbb4ae", "#b3cde3", "#ccebc5", "#decbe4", "#fed9a6", "#ffffcc", "#e5d8bd", "#fddaec", "#f2f2f2"];
 			case 3:
-				// Google Design - http://www.google.com/design/spec/style/color.html
-				//      D. Blue    Orange     L.Green    Purple     Yellow     L.Blue     Red        D.Green    Brown
-				return ["#3f51b5", "#ff9800", "#8bc34a", "#9c27b0", "#ffeb3b", "#03a9f4", "#f44336", "#009688", "#795548"];
+				return ["#e6194B", "#3cb44b", "#032e6", "#bfef45", "#f58231", "#000075", "#9A6324", "#ffe119", "#911eb4", "#800000", "#42d4f4", "#fabebe", "#4363d8", "#000000"];
+            case 4:
+                return["#800000", "#9A6324", "#808000", "#000075", "#000000", "#e6194B", "#f58231", "#ffe119", "#bfef45", "#42d4f4", "#911eb4", "#a9a9a9"]; //FIXME CORES
 		}
 	},
 
@@ -5477,14 +5467,11 @@ function chartBubbleChart () {
 
 			function zoomed() {
 				var xScaleZoomed = d3.event.transform.rescaleX(xScale);
-				var yScaleZoomed = d3.event.transform.rescaleY(yScale);
 
 				xAxis.scale(xScaleZoomed);
-				yAxis.scale(yScaleZoomed);
-				bubbles.xScale(xScaleZoomed).yScale(yScaleZoomed);
+				bubbles.xScale(xScaleZoomed);
 
 				chart.select(".xAxis").call(xAxis).selectAll("text").style("text-anchor", "end").attr("dx", "-.8em").attr("dy", ".15em").attr("transform", "rotate(-65)");
-				chart.select(".yAxis").call(yAxis);
 
 				bubbleGroups.selectAll(".seriesGroup").call(bubbles);
 			}
@@ -6484,7 +6471,7 @@ function chartLineChart () {
 	var height = 300;
 	var margin = { top: 20, right: 20, bottom: 40, left: 40 };
 	var transition = { ease: d3.easeBounce, duration: 500 };
-	var colors = palette.categorical(3);
+	var colors = palette.categorical(12);
 	var dispatch = d3.dispatch("customValueMouseOver", "customValueMouseOut", "customValueClick", "customSeriesMouseOver", "customSeriesMouseOut", "customSeriesClick");
 
 	/**

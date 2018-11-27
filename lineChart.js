@@ -112,7 +112,7 @@ d3.csv("MovieGenresperYears.csv").then(function(csv) {
       .title(title)
       .legend(legend)
         .on("customValueMouseOver", function(d) {
-          d3.select("#message").text(d.value);
+          d3.select("#lineMessage").text(d.value);
         })
         .on("customSeriesClick", function(d) {
           console.log(d);
