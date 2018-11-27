@@ -50,8 +50,11 @@ d3.csv("MovieGenresperYears.csv").then(function(csv) {
       }, {
         key: "Romance",
         values: []
-      }, {
+          }, {
         key: "Sci-Fi",
+        values: []
+      }, {
+        key: "Total",
         values: []
       }];
       //Movie types: Action,Adventure,Animation,Biography,Comedy,Crime,Drama,Family,Fantasy,Horror,Mystery,Romance,Sci-Fi,SUM
@@ -107,6 +110,10 @@ d3.csv("MovieGenresperYears.csv").then(function(csv) {
           data[12].values.push({
           key: dateConvert(d.released),
           value: d['Sci-Fi']
+        });
+          data[13].values.push({
+          key: dateConvert(d.released),
+          value: d['SUM']
         });
       });
 

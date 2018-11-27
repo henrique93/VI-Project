@@ -159,7 +159,7 @@ function base () {
 
 		// Init Legend
 		if (legend) {
-			legend.width(150).height(200);
+			legend.width(150).height(250);
 			chart.width(chart.width() - legend.width());
 		}
 
