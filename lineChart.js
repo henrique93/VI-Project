@@ -45,7 +45,9 @@ d3.csv("MovieGenresperYears.csv").then(function(csv) {
         key: "Horror",
         values: []
       }, {
-//FALTA MISTERY
+        key: "Mystery",
+        values: []
+      }, {
         key: "Romance",
         values: []
       }, {
@@ -96,9 +98,13 @@ d3.csv("MovieGenresperYears.csv").then(function(csv) {
         });
           data[10].values.push({
           key: dateConvert(d.released),
-          value: d['Romance']
+          value: d['Mystery']
         });
           data[11].values.push({
+          key: dateConvert(d.released),
+          value: d['Romance']
+        });
+          data[12].values.push({
           key: dateConvert(d.released),
           value: d['Sci-Fi']
         });
