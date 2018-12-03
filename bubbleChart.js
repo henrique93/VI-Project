@@ -9,7 +9,7 @@ var select1 = null;
 var select2 = null;
 var select3 = null;
 
-d3.csv("MovieData.csv").then(function(csv) {
+d3.csv("bubblechart.csv").then(function(csv) {
     csv.forEach(function(d) {
         d.released = new Date(d.released);
 })
@@ -39,6 +39,7 @@ d3.csv("MovieData.csv").then(function(csv) {
     .chart(chart)
     .on("customValueMouseOver", function(d) {
       d3.select("#bubbleMessage").text(d.title);
+        console.log(d);
     })
     .on("customSeriesClick", function(d) {
         var select = document.getElementById(d.values[0].title).firstElementChild.firstElementChild;

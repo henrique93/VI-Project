@@ -1441,6 +1441,8 @@ function componentBubbles () {
 
 			bubbles.enter().append("g").attr("transform", function (d) {
 				return "translate(" + xScale(d.x) + "," + yScale(d.y) + ")";
+			}).attr("genre", function (d) {
+				return d.series; //Add genre to HTML
 			}).on("mouseover", function (d) {
 				d3.select(this).select("text").style("display", "block");
 				dispatch.call("customValueMouseOver", this, d);

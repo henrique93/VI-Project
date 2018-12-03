@@ -61,74 +61,105 @@ d3.csv("MovieGenresperYears.csv").then(function(csv) {
       d3.map(csv).values().forEach(function(d) {
         data[0].values.push({
           key: dateConvert(d.released),
-          value: d['Action']
+          value: d['Action'],
+            name: 'Action'
         });
         data[1].values.push({
           key: dateConvert(d.released),
-          value: d['Adventure']
+          value: d['Adventure'],
+            name: 'Adventure'
         });
           data[2].values.push({
           key: dateConvert(d.released),
-          value: d['Animation']
+          value: d['Animation'],
+            name: 'Animation'
         });
           data[3].values.push({
           key: dateConvert(d.released),
-          value: d['Biography']
+          value: d['Biography'],
+            name: 'Biography'
         });
           data[4].values.push({
           key: dateConvert(d.released),
-          value: d['Comedy']
+          value: d['Comedy'],
+            name: 'Comedy'
         });
           data[5].values.push({
           key: dateConvert(d.released),
-          value: d['Crime']
+          value: d['Crime'],
+            name: 'Crime'
         });
           data[6].values.push({
           key: dateConvert(d.released),
-          value: d['Animation']
+          value: d['Drama'],
+            name: 'Drama'
         });
           data[7].values.push({
           key: dateConvert(d.released),
-          value: d['Family']
+          value: d['Family'],
+            name: 'Family'
         });
           data[8].values.push({
           key: dateConvert(d.released),
-          value: d['Fantasy']
+          value: d['Fantasy'],
+            name: 'Fantasy'
         });
           data[9].values.push({
           key: dateConvert(d.released),
-          value: d['Horror']
+          value: d['Horror'],
+            name: 'Horror'
         });
           data[10].values.push({
           key: dateConvert(d.released),
-          value: d['Mystery']
+          value: d['Mystery'],
+            name: 'Mystery'
         });
           data[11].values.push({
           key: dateConvert(d.released),
-          value: d['Romance']
+          value: d['Romance'],
+            name: 'Romance'
         });
           data[12].values.push({
           key: dateConvert(d.released),
-          value: d['Sci-Fi']
+          value: d['Sci-Fi'],
+            name: 'Sci-Fi'
         });
           data[13].values.push({
           key: dateConvert(d.released),
-          value: d['SUM']
+          value: d['SUM'],
+            name: 'SUM'
         });
       });
 
       // Create chart base
       var myChart = d3.ez.base()
-        .width(850)
+        .width(750)
         .height(300)
         .chart(chart)
         .title(title)
         .legend(legend)
         .on("customValueMouseOver", function(d) {
+            //console.log(d);
           d3.select("#lineMessage").text(d.value);
+            d3.select("#bubbleMessage").text(d.value);
         })
         .on("customSeriesClick", function(d) {
-          console.log(d);
+            genre = d.key;
+            bubbles = d3.selectAll("[genre="+genre+"]");
+            line = d3.select("#"+genre);
+            if (bubbles.attr("visibility") == "visible") {
+                console.log("1");
+                line.attr("stroke-opacity", "0.2");
+                line.attr("fill-opacity", "0.2");
+                bubbles.attr("visibility", "hidden");
+            }
+            else {
+                console.log("2");
+                line.attr("stroke-opacity", "1");
+                line.attr("fill-opacity", "1");
+                bubbles.attr("visibility", "visible");
+            }
+            console.log(line);
         });
 
       d3.select('#lineChart')
