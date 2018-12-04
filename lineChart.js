@@ -53,9 +53,6 @@ d3.csv("MovieGenresperYears.csv").then(function(csv) {
           }, {
         key: "Sci-Fi",
         values: []
-      }, {
-        key: "Total",
-        values: []
       }];
       //Movie types: Action,Adventure,Animation,Biography,Comedy,Crime,Drama,Family,Fantasy,Horror,Mystery,Romance,Sci-Fi,SUM
       d3.map(csv).values().forEach(function(d) {
@@ -124,14 +121,10 @@ d3.csv("MovieGenresperYears.csv").then(function(csv) {
           value: d['Sci-Fi'],
             name: 'Sci-Fi'
         });
-          data[13].values.push({
-          key: dateConvert(d.released),
-          value: d['SUM'],
-            name: 'SUM'
-        });
       });
 
       // Create chart base
+    var fix = 0;
       var myChart = d3.ez.base()
         .width(750)
         .height(300)
@@ -144,22 +137,27 @@ d3.csv("MovieGenresperYears.csv").then(function(csv) {
             d3.select("#bubbleMessage").text(d.value);
         })
         .on("customSeriesClick", function(d) {
-            genre = d.key;
+            if (fix <= 1){
+                genre = d.key;
             bubbles = d3.selectAll("[genre="+genre+"]");
             line = d3.select("#"+genre);
             if (bubbles.attr("visibility") == "visible") {
-                console.log("1");
                 line.attr("stroke-opacity", "0.2");
                 line.attr("fill-opacity", "0.2");
                 bubbles.attr("visibility", "hidden");
             }
             else {
-                console.log("2");
                 line.attr("stroke-opacity", "1");
                 line.attr("fill-opacity", "1");
                 bubbles.attr("visibility", "visible");
             }
-            console.log(line);
+            console.log(genre);
+            console.log(bubbles.attr("visibility"));
+                fix += 1;
+            }
+            else {
+                fix = 0;
+            }
         });
 
       d3.select('#lineChart')
