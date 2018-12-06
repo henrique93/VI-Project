@@ -139,20 +139,20 @@ d3.csv("MovieGenresperYears.csv").then(function(csv) {
         .on("customSeriesClick", function(d) {
             if (fix <= 1){
                 genre = d.key;
-            bubbles = d3.selectAll("[genre="+genre+"]");
-            line = d3.select("#"+genre);
-            if (bubbles.attr("visibility") == "visible") {
-                line.attr("stroke-opacity", "0.2");
-                line.attr("fill-opacity", "0.2");
-                bubbles.attr("visibility", "hidden");
-            }
-            else {
-                line.attr("stroke-opacity", "1");
-                line.attr("fill-opacity", "1");
-                bubbles.attr("visibility", "visible");
-            }
-            console.log(genre);
-            console.log(bubbles.attr("visibility"));
+                bubbles = d3.selectAll("[genre="+genre+"]");
+                line = d3.select("#"+genre);
+                if (bubbles.attr("visibility") == "visible") {
+                    line.attr("stroke-opacity", "0.2");
+                    line.attr("fill-opacity", "0.2");
+                    bubbles.attr("visibility", "hidden");
+                }
+                else {
+                    line.attr("stroke-opacity", "1");
+                    line.attr("fill-opacity", "1");
+                    bubbles.attr("visibility", "visible");
+                }
+                console.log(genre);
+                console.log(bubbles.attr("visibility"));
                 fix += 1;
             }
             else {
