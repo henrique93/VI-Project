@@ -127,13 +127,13 @@ d3.csv("MovieGenresperYears.csv").then(function(csv) {
     var fix = 0;
       var myChart = d3.ez.base()
         .width(750)
-        .height(300)
+        .height(280)
         .chart(chart)
         .title(title)
         .legend(legend)
         .on("customValueMouseOver", function(d) {
             //console.log(d);
-          d3.select("#lineMessage").text(d.value);
+          //d3.select("#lineMessage").text(d.value);
             d3.select("#bubbleMessage").text(d.value);
         })
         .on("customSeriesClick", function(d) {

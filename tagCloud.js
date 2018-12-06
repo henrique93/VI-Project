@@ -1,4 +1,3 @@
-
 d3.csv("datasets/TagCloud.csv").then(function(data) {
 	console.log(data);
 	writer = []
@@ -15,8 +14,8 @@ d3.csv("datasets/TagCloud.csv").then(function(data) {
 			});
 
 	var fontName = "Impact",
-	  cWidth = 300,
-	  cHeight = 200,
+	  cWidth = 500,
+	  cHeight = 250,
 	  svg,
 	  wCloud,
 	  bbox,

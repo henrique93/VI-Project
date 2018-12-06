@@ -38,7 +38,7 @@ d3.csv("bubblechart.csv").then(function(csv) {
     .height(300)
     .chart(chart)
     .on("customValueMouseOver", function(d) {
-      d3.select("#bubbleMessage").text(d.title);
+      //d3.select("#bubbleMessage").text(d.title);
         console.log(d);
     })
     .on("customSeriesClick", function(d) {

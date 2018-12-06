@@ -2,16 +2,15 @@ var randomX = d3.randomUniform(0, 10),
     randomY = d3.randomNormal(0.5, 0.12),
     data = d3.range(800).map(function() { return [randomX(), randomY()]; });
 
-	
-var	width=794,
-	height= 20,
-    svg = d3.select("#timeLine").append("svg")
+
+var	width=900, height= 50,
+    svg = d3.select("#TimeLine").append("svg")
 	.attr("width", width)
 	.attr("height", height)
 	.attr("id","teste");
      g = svg.append("g");
-	 
-var	margin = {top: 194, right: 50, bottom: 214, left: 50};
+
+var	margin = {top: 0, right: 0, bottom: 20, left: 0};
     width = +svg.attr("width") - margin.left - margin.right;
     height = +svg.attr("height") - margin.top - margin.bottom;
 
