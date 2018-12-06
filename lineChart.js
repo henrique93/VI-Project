@@ -1,6 +1,6 @@
 d3.csv("MovieGenresperYears.csv").then(function(csv) {
       // Historical Exchange Rates Source: https://www.ofx.com/en-gb/forex-news/historical-exchange-rates/
-    console.log(csv);
+
       var colors = d3.ez.palette.categorical(3);
       var chart = d3.ez.chart.lineChart().colors(colors).yAxisLabel("Quantity");
       var legend = d3.ez.component.legend().title("Genre");
