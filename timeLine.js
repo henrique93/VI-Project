@@ -1,28 +1,28 @@
-var randomX = d3.randomUniform(0, 10),
+var randomX = d3.randomUniform(1986, 2016),
     randomY = d3.randomNormal(0.5, 0.12),
     data = d3.range(800).map(function() { return [randomX(), randomY()]; });
 
 
-var	width=900, height= 50,
+var	width=1300, height= 50,
     svg = d3.select("#TimeLine").append("svg")
 	.attr("width", width)
 	.attr("height", height)
 	.attr("id","teste");
      g = svg.append("g");
 
-var	margin = {top: 0, right: 0, bottom: 20, left: 0};
+var	margin = {top: 0, right: 30, bottom: 20, left: 30};
     width = +svg.attr("width") - margin.left - margin.right;
     height = +svg.attr("height") - margin.top - margin.bottom;
 
 var x = d3.scaleLinear()
-    .domain([0, 10])
-    .range([0, width]);
+    .domain([1986, 2016])
+    .range([10, width]);
 
 var y = d3.scaleLinear()
     .range([height, 0]);
 
 var brush = d3.brushX()
-    .extent([[0, 0], [width, height]])
+    .extent([[10, 0], [width, height]])
     .on("start brush", brushed)
     .on("end", brushended);
 
@@ -72,4 +72,6 @@ function brushended() {
   }
 
   d3.select(this).transition().call(brush.move, d1.map(x));
+  console.log(d1[0]) //Data inicio
+  console.log(d1[1]) //Data fim
 }

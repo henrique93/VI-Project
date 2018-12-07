@@ -159,7 +159,7 @@ function base () {
 
 		// Init Legend
 		if (legend) {
-			legend.width(150).height(250);
+			legend.width(150).height(240);
 			chart.width(chart.width() - legend.width());
 		}
 
@@ -5398,7 +5398,7 @@ function chartBubbleChart () {
 
 		// If the sizeScale has not been passed then attempt to calculate.
 		sizeScale = typeof sizeScale === "undefined" ? d3.scaleLinear().domain(sizeDomain).range([minRadius, maxRadius]) : sizeScale;
-        
+
         //HARD CODED!!!!
         var date1 = new Date("1985-01-01");
         var date2 = new Date("2020-01-01");
@@ -7143,7 +7143,7 @@ function chartRadarChart () {
     selection.each(function (data) {
       // Initialise Data
       init(data);
-        
+
       // Create Circular Axis
       var circularAxis = component.circularAxis().radialScale(xScale).ringScale(yScale).radius(radius);
 
