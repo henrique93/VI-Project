@@ -1,9 +1,4 @@
-dateConvert = function(dateYMD) {
-      parser = d3.timeParse('%Y-%m-%d');
-      var dateISO = parser(dateYMD).toISOString();
-      var dateUnix = new Date(dateISO)/1000;
-      return dateUnix;
-    };
+
 
 var select1 = null;
 var select2 = null;

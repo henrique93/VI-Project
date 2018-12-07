@@ -5,7 +5,7 @@ d3.csv("MovieGenresperYears.csv").then(function(csv) {
       var chart = d3.ez.chart.lineChart().colors(colors).yAxisLabel("Quantity");
       var legend = d3.ez.component.legend().title("Genre");
       var title = d3.ez.component.title().mainText("").subText("");
-  
+
       // Convert csv to d3-ez data format
       dateConvert = function(dateYMD) {
         parser = d3.timeParse('%Y');
