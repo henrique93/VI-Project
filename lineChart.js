@@ -74,36 +74,35 @@ d3.csv("datasets/LineChart.csv").then(function(csv) {
       },
       axis: {
           x: {
-              type: 'timeseries',
-              tick: {
-                  format: '%Y'
-              }
+            type: 'timeseries',
+            tick: {
+                format: '%Y'
+            }
           }
       },
       legend: {
-                   item: {
-                       onclick: function legend_on_click(id) {
-                         var $$ = this;
-                         var regions = $$.mainRegion;
-                         var genre = id;
-                         var bubbles = d3.selectAll("[genre="+genre+"]");
-                         console.log(bubbles);
-                         if ($$.d3.event.altKey) {
-                           $$.api.hide();
-                           $$.api.show(id);
-                         }
-                         else {
-                           $$.api.toggle(id);
-                           $$.isTargetToShow(id) ? $$.api.focus(id) : $$.api.revert();
-                           if ($$.isTargetToShow(id) == true) {
-                               bubbles.attr("visibility", "visible");
-                           }
-                           else {
-                               bubbles.attr("visibility", "hidden");
-                           }
-                         }
-                      }
+           item: {
+               onclick: function legend_on_click(id) {
+                 var $$ = this;
+                 var regions = $$.mainRegion;
+                 var genre = id;
+                 var bubbles = d3.selectAll("[genre="+genre+"]");
+                 if ($$.d3.event.altKey) {
+                   $$.api.hide();
+                   $$.api.show(id);
+                 }
+                 else {
+                   $$.api.toggle(id);
+                   $$.isTargetToShow(id) ? $$.api.focus(id) : $$.api.revert();
+                   if ($$.isTargetToShow(id) == true) {
+                     bubbles.attr("visibility", "visible");
                    }
+                   else {
+                     bubbles.attr("visibility", "hidden");
+                   }
+                 }
+              }
+           }
       }
 
   });
