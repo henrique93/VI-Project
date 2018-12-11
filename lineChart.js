@@ -1,19 +1,7 @@
+var lineChart;
+
 d3.csv("datasets/LineChart.csv").then(function(csv) {
-      // Historical Exchange Rates Source: https://www.ofx.com/en-gb/forex-news/historical-exchange-rates/
-
-      var colors = d3.ez.palette.categorical(3);
-      var chart = d3.ez.chart.lineChart().colors(colors).yAxisLabel("Quantity");
-      var legend = d3.ez.component.legend().title("Genre");
-      var title = d3.ez.component.title().mainText("").subText("");
-
-      // Convert csv to d3-ez data format
-      dateConvert = function(dateYMD) {
-        parser = d3.timeParse('%Y');
-        var dateISO = parser(dateYMD).toISOString();
-        var dateUnix = new Date(dateISO) / 1000;
-        return dateUnix;
-      }
-      //Movie types: Action,Adventure,Animation,Biography,Comedy,Crime,Drama,Family,Fantasy,Horror,Mystery,Romance,Sci-Fi,SUM
+      //Movie types: Action,Adventure,Animation,Biography,Comedy,Crime,Drama,Family,Fantasy,Horror,Mystery,Romance,Sci-Fi
       var dataAction = ["Action"];
       var dataAdventure = ["Adventure"];
       var dataAnimation = ["Animation"];
@@ -27,7 +15,7 @@ d3.csv("datasets/LineChart.csv").then(function(csv) {
       var dataMystery = ["Mystery"];
       var dataRomance = ["Romance"];
       var dataSciFi = ["Sci-Fi"];
-      //Movie types: Action,Adventure,Animation,Biography,Comedy,Crime,Drama,Family,Fantasy,Horror,Mystery,Romance,Sci-Fi,SUM
+      //Movie types: Action,Adventure,Animation,Biography,Comedy,Crime,Drama,Family,Fantasy,Horror,Mystery,Romance,Sci-Fi
       d3.map(csv).values().forEach(function(d) {
         dataAction.push(d['Action']);
         dataAdventure.push(d['Adventure']);
@@ -46,7 +34,7 @@ d3.csv("datasets/LineChart.csv").then(function(csv) {
 
 
 
-    var chart = c3.generate({
+    lineChart = c3.generate({
       bindto: '#lineChart',
       data: {
           x: 'x',

@@ -1,7 +1,5 @@
 //var randomX = d3.randomUniform(1986, 2016),
   //  data = d3.range(800).map(function() { return [randomX(), 0.5]; });
-
-
 d3.csv("datasets/TimeLine.csv").then(function(csv) {
   var data = csv.map(function(d) {
     return [d.Data.substring(3, 7), 0.5];
@@ -75,7 +73,7 @@ d3.csv("datasets/TimeLine.csv").then(function(csv) {
     }
 
     d3.select(this).transition().call(brush.move, d1.map(x));
-    console.log(d1[0]) //Data inicio
-    console.log(d1[1]) //Data fim
+    lineChart.axis.min({x:d1[0]+"-01-01"}); //Start date
+    lineChart.axis.max({x:d1[1]+"-01-01"}); //End date
   }
 });
