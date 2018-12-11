@@ -2,7 +2,7 @@
   //  data = d3.range(800).map(function() { return [randomX(), 0.5]; });
 
 
-d3.csv("TimeLine.csv").then(function(csv) {
+d3.csv("datasets/TimeLine.csv").then(function(csv) {
   var data = csv.map(function(d) {
     return [d.Data.substring(3, 7), 0.5];
   });
@@ -19,7 +19,7 @@ d3.csv("TimeLine.csv").then(function(csv) {
 
   var x = d3.scaleLinear()
       .domain([1986, 2016])
-      .range([10, width]);
+      .range([20, width]);
 
   var y = d3.scaleLinear()
       .range([height, 0]);

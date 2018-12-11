@@ -1,10 +1,15 @@
-
+dateConvert = function(dateYMD) {
+      parser = d3.timeParse('%Y-%m-%d');
+      var dateISO = parser(dateYMD).toISOString();
+      var dateUnix = new Date(dateISO)/1000;
+      return dateUnix;
+    };
 
 var select1 = null;
 var select2 = null;
 var select3 = null;
 
-d3.csv("bubblechart.csv").then(function(csv) {
+d3.csv("datasets/BubbleChart.csv").then(function(csv) {
     csv.forEach(function(d) {
         d.released = new Date(d.released);
 })

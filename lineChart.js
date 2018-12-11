@@ -1,4 +1,4 @@
-d3.csv("MovieGenresperYears.csv").then(function(csv) {
+d3.csv("datasets/LineChart.csv").then(function(csv) {
       // Historical Exchange Rates Source: https://www.ofx.com/en-gb/forex-news/historical-exchange-rates/
 
       var colors = d3.ez.palette.categorical(3);
