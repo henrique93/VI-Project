@@ -80,6 +80,9 @@ d3.csv("datasets/LineChart.csv").then(function(csv) {
             }
           }
       },
+      color: {
+        pattern: ["#e6194B", "#3cb44b", "#f032e6", "#bfef45", "#f58231", "#000075", "#9A6324", "#ffe119", "#911eb4", "#800000", "#42d4f4", "#fabebe", "#4363d8"]
+      },
       legend: {
            item: {
                onclick: function legend_on_click(id) {
