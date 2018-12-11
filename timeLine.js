@@ -7,7 +7,7 @@ d3.csv("datasets/TimeLine.csv").then(function(csv) {
     return [d.Data.substring(3, 7), 0.5];
   });
   var	width=1300, height= 50,
-      svg = d3.select(".timeLine").append("svg")
+      svg = d3.select("#timeLine").append("svg")
   	.attr("width", width)
   	.attr("height", height)
   	.attr("id","teste");

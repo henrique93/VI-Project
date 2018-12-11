@@ -90,10 +90,10 @@ d3.csv("datasets/BubbleChart.csv").then(function(csv) {
         console.log("2: ", select2);
         console.log("3: ", select3);
         if (update == 1) {
-            d3.select("#BubbleChart")
+            d3.select("#bubbleChart")
                 .datum(d)
                 .call(myChart);
-            d3.select("#RadarChart")
+            d3.select("#radarChart")
                 .datum(d)
                 .call(myChart);
         }
@@ -101,7 +101,7 @@ d3.csv("datasets/BubbleChart.csv").then(function(csv) {
     if (select1 != null) {
         document.getElementById(d.values[0].title).firstElementChild.firstChild.style = select1
     }
-  d3.select('#BubbleChart')
+  d3.select('#bubbleChart')
     .datum(dataBubble)
     .call(myChart);
 });

@@ -41,6 +41,6 @@ var myChart = d3.ez.base()
     console.log(d);
   });
 // Add to page
-d3.select("#RadarChart")
+d3.select("#radarChart")
   .datum(data)
   .call(myChart);

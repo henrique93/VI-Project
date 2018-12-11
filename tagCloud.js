@@ -35,7 +35,7 @@ d3.csv("datasets/TagCloud.csv").then(function(data) {
 	var fRatio = Math.min(cWidth, cHeight) / ctx.measureText(words[0].text).width,
 	  fontScale = d3.scaleLinear()
 		.domain([
-		  d3.min(words, function(d) { return d.size; }), 
+		  d3.min(words, function(d) { return d.size; }),
 		  d3.max(words, function(d) { return d.size; })
 		])
 		//.range([20,120]),
@@ -63,12 +63,12 @@ d3.csv("datasets/TagCloud.csv").then(function(data) {
 	  bDeltaX = cWidth/2 - bounds[0].x + bWidth/2;
 	  bDeltaY = cHeight/2 - bounds[0].y + bHeight/2;
 	  bScale = bounds ? Math.min( cWidth / bWidth, cHeight / bHeight) : 1;
-	  
+
 	  console.log(
-		"bounds (" + bounds[0].x + 
-		", " + bounds[0].y + 
-		", " + bounds[1].x + 
-		", " + bounds[1].y + 
+		"bounds (" + bounds[0].x +
+		", " + bounds[0].y +
+		", " + bounds[1].x +
+		", " + bounds[1].y +
 		"), width " + bWidth +
 		", height " + bHeight +
 		", mid (" + bMidX +
@@ -77,14 +77,14 @@ d3.csv("datasets/TagCloud.csv").then(function(data) {
 		", " + bDeltaY +
 		"), scale " + bScale
 	  );
-	  
+
 	  // the library's bounds seem not to correspond to reality?
 	  // try using .getBBox() instead?
-	  
+
 	  svg = d3.select(".cloud").append("svg")
 		.attr("width", cWidth)
 		.attr("height", cHeight);
-	  
+
 	  wCloud = svg.append("g")
 		//.attr("transform", "translate(" + [bDeltaX, bDeltaY] + ") scale(" + 1 + ")") // nah!
 		.attr("transform", "translate(" + [bWidth>>1, bHeight>>1] + ") scale(" + bScale + ")") // nah!
@@ -101,20 +101,20 @@ d3.csv("datasets/TagCloud.csv").then(function(data) {
 		  return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
 		})
 		.text(function(d) { return d.text; });
-	  
+
 	  // TO DO: function to find min and max x,y of all words
 	  // and use it as the group's bbox
 	  // then do the transformation
 	  bbox = wCloud.node(0).getBBox();
 	  //ctm = wCloud.node().getCTM();
 	  console.log(
-		"bbox (x: " + bbox.x + 
-		", y: " + bbox.y + 
-		", w: " + bbox.width + 
-		", h: " + bbox.height + 
+		"bbox (x: " + bbox.x +
+		", y: " + bbox.y +
+		", w: " + bbox.width +
+		", h: " + bbox.height +
 		")"
 	  );
-	  
+
 	};
 
 	function sortByFrequency(arr) {
