@@ -14,153 +14,96 @@ d3.csv("datasets/LineChart.csv").then(function(csv) {
         return dateUnix;
       }
       //Movie types: Action,Adventure,Animation,Biography,Comedy,Crime,Drama,Family,Fantasy,Horror,Mystery,Romance,Sci-Fi,SUM
-      var data = [{
-        key: "Action",
-        values: []
-      }, {
-        key: "Adventure",
-        values: []
-      }, {
-        key: "Animation",
-        values: []
-      }, {
-        key: "Biography",
-        values: []
-      }, {
-        key: "Comedy",
-        values: []
-      }, {
-        key: "Crime",
-        values: []
-      }, {
-        key: "Drama",
-        values: []
-      }, {
-        key: "Family",
-        values: []
-      }, {
-        key: "Fantasy",
-        values: []
-      }, {
-        key: "Horror",
-        values: []
-      }, {
-        key: "Mystery",
-        values: []
-      }, {
-        key: "Romance",
-        values: []
-          }, {
-        key: "Sci-Fi",
-        values: []
-      }];
+      var dataAction = ["Action"];
+      var dataAdventure = ["Adventure"];
+      var dataAnimation = ["Animation"];
+      var dataBiography = ["Biography"];
+      var dataComedy = ["Comedy"];
+      var dataCrime = ["Crime"];
+      var dataDrama = ["Drama"];
+      var dataFamily = ["Family"];
+      var dataFantasy = ["Fantasy"];
+      var dataHorror = ["Horror"];
+      var dataMystery = ["Mystery"];
+      var dataRomance = ["Romance"];
+      var dataSciFi = ["Sci-Fi"];
       //Movie types: Action,Adventure,Animation,Biography,Comedy,Crime,Drama,Family,Fantasy,Horror,Mystery,Romance,Sci-Fi,SUM
       d3.map(csv).values().forEach(function(d) {
-        data[0].values.push({
-          key: dateConvert(d.released),
-          value: d['Action'],
-            name: 'Action'
-        });
-        data[1].values.push({
-          key: dateConvert(d.released),
-          value: d['Adventure'],
-            name: 'Adventure'
-        });
-          data[2].values.push({
-          key: dateConvert(d.released),
-          value: d['Animation'],
-            name: 'Animation'
-        });
-          data[3].values.push({
-          key: dateConvert(d.released),
-          value: d['Biography'],
-            name: 'Biography'
-        });
-          data[4].values.push({
-          key: dateConvert(d.released),
-          value: d['Comedy'],
-            name: 'Comedy'
-        });
-          data[5].values.push({
-          key: dateConvert(d.released),
-          value: d['Crime'],
-            name: 'Crime'
-        });
-          data[6].values.push({
-          key: dateConvert(d.released),
-          value: d['Drama'],
-            name: 'Drama'
-        });
-          data[7].values.push({
-          key: dateConvert(d.released),
-          value: d['Family'],
-            name: 'Family'
-        });
-          data[8].values.push({
-          key: dateConvert(d.released),
-          value: d['Fantasy'],
-            name: 'Fantasy'
-        });
-          data[9].values.push({
-          key: dateConvert(d.released),
-          value: d['Horror'],
-            name: 'Horror'
-        });
-          data[10].values.push({
-          key: dateConvert(d.released),
-          value: d['Mystery'],
-            name: 'Mystery'
-        });
-          data[11].values.push({
-          key: dateConvert(d.released),
-          value: d['Romance'],
-            name: 'Romance'
-        });
-          data[12].values.push({
-          key: dateConvert(d.released),
-          value: d['Sci-Fi'],
-            name: 'Sci-Fi'
-        });
+        dataAction.push(d['Action']);
+        dataAdventure.push(d['Adventure']);
+        dataAnimation.push(d['Animation']);
+        dataBiography.push(d['Biography']);
+        dataComedy.push(d['Comedy']);
+        dataCrime.push(d['Crime']);
+        dataDrama.push(d['Drama']);
+        dataFamily.push(d['Family']);
+        dataFantasy.push(d['Fantasy']);
+        dataHorror.push(d['Horror']);
+        dataMystery.push(d['Mystery']);
+        dataRomance.push(d['Romance']);
+        dataSciFi.push(d['Sci-Fi']);
       });
 
-      // Create chart base
-    var fix = 0;
-      var myChart = d3.ez.base()
-        .width(750)
-        .height(280)
-        .chart(chart)
-        .title(title)
-        .legend(legend)
-        .on("customValueMouseOver", function(d) {
-            //console.log(d);
-          //d3.select("#lineMessage").text(d.value);
-            d3.select("#bubbleMessage").text(d.value);
-        })
-        .on("customSeriesClick", function(d) {
-            if (fix <= 1){
-                genre = d.key;
-                bubbles = d3.selectAll("[genre="+genre+"]");
-                line = d3.select("#"+genre);
-                if (bubbles.attr("visibility") == "visible") {
-                    line.attr("stroke-opacity", "0.2");
-                    line.attr("fill-opacity", "0.2");
-                    bubbles.attr("visibility", "hidden");
-                }
-                else {
-                    line.attr("stroke-opacity", "1");
-                    line.attr("fill-opacity", "1");
-                    bubbles.attr("visibility", "visible");
-                }
-                console.log(genre);
-                console.log(bubbles.attr("visibility"));
-                fix += 1;
-            }
-            else {
-                fix = 0;
-            }
-        });
 
-      d3.select('#lineChart')
-        .datum(data)
-        .call(myChart);
+
+    var chart = c3.generate({
+      bindto: '#lineChart',
+      data: {
+          x: 'x',
+  //        xFormat: '%Y%m%d', // 'xFormat' can be used as custom format of 'x'
+          columns: [
+            //['x', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016'],
+            ['x', '1986-01-01', '1987-01-01', '1988-01-01', '1989-01-01', '1990-01-01', '1991-01-01', '1992-01-01', '1993-01-01', '1994-01-01', '1995-01-01', '1996-01-01', '1997-01-01', '1998-01-01', '1999-01-01', '2000-01-01', '2001-01-01', '2002-01-01', '2003-01-01', '2004-01-01', '2005-01-01', '2006-01-01', '2007-01-01', '2008-01-01', '2009-01-01', '2010-01-01', '2011-01-01', '2012-01-01', '2013-01-01', '2014-01-01', '2015-01-01', '2016-01-01'],
+              dataAction,
+              dataAdventure,
+              dataAnimation,
+              dataBiography,
+              dataComedy,
+              dataCrime,
+              dataDrama,
+              dataFamily,
+              dataFantasy,
+              dataHorror,
+              dataMystery,
+              dataRomance,
+              dataSciFi
+          ],
+          onclick: function (datum, element) {
+            console.log("ola");
+          }
+      },
+      axis: {
+          x: {
+            type: 'timeseries',
+            tick: {
+                format: '%Y'
+            }
+          }
+      },
+      legend: {
+           item: {
+               onclick: function legend_on_click(id) {
+                 var $$ = this;
+                 var regions = $$.mainRegion;
+                 var genre = id;
+                 var bubbles = d3.selectAll("[genre="+genre+"]");
+                 if ($$.d3.event.altKey) {
+                   $$.api.hide();
+                   $$.api.show(id);
+                 }
+                 else {
+                   $$.api.toggle(id);
+                   $$.isTargetToShow(id) ? $$.api.focus(id) : $$.api.revert();
+                   if ($$.isTargetToShow(id) == true) {
+                     bubbles.attr("visibility", "visible");
+                   }
+                   else {
+                     bubbles.attr("visibility", "hidden");
+                   }
+                 }
+              }
+           }
+      }
+
+  });
 });
