@@ -1,3 +1,4 @@
+var cloud;
 d3.csv("datasets/TagCloud.csv").then(function(data) {
 	console.log(data);
 	writer = []
@@ -8,9 +9,12 @@ d3.csv("datasets/TagCloud.csv").then(function(data) {
 		star.push(d.star);
         director.push(d.director);
 })
-	var words = sortByFrequency(writer)
-		.map(function(d,i) {
-			  return {text: d, size: -i};
+
+  var answer = sortByFrequency(writer);
+	var sorted_words = answer[0];
+	var size = answer[1];
+	words = sorted_words.map(function(d) {
+			  return {text: d, size: size[d]};
 			});
 
 	var fontName = "Impact",
@@ -39,15 +43,15 @@ d3.csv("datasets/TagCloud.csv").then(function(data) {
 		  d3.max(words, function(d) { return d.size; })
 		])
 		//.range([20,120]),
-		.range([20,100*fRatio/2]), // tbc
+		.range([20,30]), // tbc
 	  //fill = d3.scale.category20();
-	  fill = d3.scaleOrdinal(d3.schemeCategory20);
+	  fill = d3.scaleOrdinal(d3.schemePaired);
 
-	d3.layout.cloud()
+ cloud =	d3.layout.cloud()
 	  .size([cWidth, cHeight])
 	  .words(words)
 	  //.padding(2) // controls
-	  .rotate(function() { return ~~(Math.random() * 2) * 90; })
+	  .rotate(function() { return 0; })
 	  .font(fontName)
 	  .fontSize(function(d) { return fontScale(d.size) })
 	  .on("end", draw)
@@ -91,7 +95,7 @@ d3.csv("datasets/TagCloud.csv").then(function(data) {
 		.selectAll("text")
 		.data(words)
 		.enter().append("text")
-		.style("font-size", function(d) { return d.size + "px"; })
+		.style("font-size", function(d) { return 10 + size[d.text] * 2 + "px"; })
 		.style("font-family", fontName)
 		.style("fill", function(d, i) { return fill(i); })
 		.attr("text-anchor", "middle")
@@ -118,9 +122,10 @@ d3.csv("datasets/TagCloud.csv").then(function(data) {
 	};
 
 	function sortByFrequency(arr) {
-	  var f = {};
+		f = {};
 	  arr.forEach(function(i) { f[i] = 0; });
 	  var u = arr.filter(function(i) { return ++f[i] == 1; });
-	  return u.sort(function(a, b) { return f[b] - f[a]; });
+		temp = u.sort(function(a, b) { return f[b] - f[a]; });
+	  return [temp , f];
 	}
 });
