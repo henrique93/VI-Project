@@ -1,35 +1,45 @@
 var lineChart;
 
-d3.csv("datasets/LineChart.csv").then(function(csv) {
+d3.csv("datasets/LineChartShort.csv").then(function(csv) {
       //Movie types: Action,Adventure,Animation,Biography,Comedy,Crime,Drama,Family,Fantasy,Horror,Mystery,Romance,Sci-Fi
       var dataAction = ["Action"];
       var dataAdventure = ["Adventure"];
       var dataAnimation = ["Animation"];
-      var dataBiography = ["Biography"];
+      var dataBiography = ["Biography"];  //Short csv version
       var dataComedy = ["Comedy"];
       var dataCrime = ["Crime"];
       var dataDrama = ["Drama"];
       var dataFamily = ["Family"];
       var dataFantasy = ["Fantasy"];
+      //var dataHistory = ["History"];    //Long csv version
       var dataHorror = ["Horror"];
+      //var dataMusic = ["Music"];        //Long csv version
       var dataMystery = ["Mystery"];
       var dataRomance = ["Romance"];
       var dataSciFi = ["Sci-Fi"];
+      //var dataThriller = ["Thriller"];  //Long csv version
+      //var dataWar = ["War"];            //Long csv version
+      //var dataWestern = ["Western"];    //Long csv version
       //Movie types: Action,Adventure,Animation,Biography,Comedy,Crime,Drama,Family,Fantasy,Horror,Mystery,Romance,Sci-Fi
       d3.map(csv).values().forEach(function(d) {
         dataAction.push(d['Action']);
         dataAdventure.push(d['Adventure']);
         dataAnimation.push(d['Animation']);
-        dataBiography.push(d['Biography']);
+        dataBiography.push(d['Biography']);  //Short csv version
         dataComedy.push(d['Comedy']);
         dataCrime.push(d['Crime']);
         dataDrama.push(d['Drama']);
         dataFamily.push(d['Family']);
         dataFantasy.push(d['Fantasy']);
+        //dataHistory.push(d['History']);    //Long csv version
         dataHorror.push(d['Horror']);
+        //dataMusic.push(d['Music']);        //Long csv version
         dataMystery.push(d['Mystery']);
         dataRomance.push(d['Romance']);
-        dataSciFi.push(d['Sci-Fi']);
+        dataSciFi.push(d['Sci-Fi'/*Science Fiction*/]);  //Long csv version is Science Fiction Short is Sci-Fi
+        //dataThriller.push(d['Thriller']);  //Long csv version
+        //dataWar.push(d['War']);            //Long csv version
+        //dataWestern.push(d['Western']);    //Long csv version
       });
 
 
@@ -45,16 +55,21 @@ d3.csv("datasets/LineChart.csv").then(function(csv) {
               dataAction,
               dataAdventure,
               dataAnimation,
-              dataBiography,
+              dataBiography,  //Short csv version
               dataComedy,
               dataCrime,
               dataDrama,
               dataFamily,
               dataFantasy,
+              //dataHistory,   //Long csv version
               dataHorror,
+              //dataMusic,     //Long csv version
               dataMystery,
               dataRomance,
-              dataSciFi
+              dataSciFi,
+              //dataThriller,  //Long csv version
+              //dataWar,       //Long csv version
+              //dataWestern    //Long csv version
           ],
           onclick: function (datum, element) {
             console.log("ola");

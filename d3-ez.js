@@ -5403,7 +5403,7 @@ function chartBubbleChart () {
         var date1 = new Date("1985-01-01");
         var date2 = new Date("2020-01-01");
         xScale = d3.scaleTime().domain([date1, date2]).range([0, chartW]).nice();
-		yScale = d3.scaleLinear().domain([0, 10]).range([chartH, 0]).nice();
+		yScale = d3.scaleLinear().domain([2.5, 9]/*yDomain*/).range([chartH, 0]).nice();
 	}
 
 	/**
