@@ -26,6 +26,7 @@ d3.csv("datasets/TimeLine.csv").then(function(csv) {
       .extent([[10, 0], [width, height]])
       .on("start brush", brushed)
       .on("end", brushended);
+
   var dot = g.append("g")
       .attr("fill-opacity", 0.2)
     .selectAll("circle")
@@ -33,6 +34,7 @@ d3.csv("datasets/TimeLine.csv").then(function(csv) {
     .enter().append("circle")
       .attr("transform", function(d) { return "translate(" + x(d[0]) + "," + y(d[1]) + ")"; })
       .attr("r", 3.5);
+      //.on("mouseover", function(d) {console.log(d);});
 
   g.append("g")
       .call(brush)
