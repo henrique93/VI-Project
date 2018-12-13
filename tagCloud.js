@@ -6,7 +6,7 @@ d3.csv("datasets/TagCloud.csv").then(function(data) {
 	director = []
     data.forEach(function(d) {
         writer.push(d.writer);
-		star.push(d.star);
+				star.push(d.star);
         director.push(d.director);
 })
 

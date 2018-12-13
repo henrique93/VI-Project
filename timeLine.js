@@ -2,7 +2,7 @@
   //  data = d3.range(800).map(function() { return [randomX(), 0.5]; });
 d3.csv("datasets/TimeLine.csv").then(function(csv) {
   var data = csv.map(function(d) {
-    return [d.Data.substring(3, 7), 0.5];
+    return [new Date(d.Data), 0.5];
   });
   var	width=1300, height= 50,
       svg = d3.select("#timeLine").append("svg")
@@ -15,8 +15,8 @@ d3.csv("datasets/TimeLine.csv").then(function(csv) {
       width = +svg.attr("width") - margin.left - margin.right;
       height = +svg.attr("height") - margin.top - margin.bottom;
 
-  var x = d3.scaleLinear()
-      .domain([1986, 2016])
+  var x = d3.scaleTime()
+      .domain([new Date(1986, 1, 1), new Date(2016, 1, 1) - 1])
       .range([20, width]);
 
   var y = d3.scaleLinear()
@@ -26,7 +26,6 @@ d3.csv("datasets/TimeLine.csv").then(function(csv) {
       .extent([[10, 0], [width, height]])
       .on("start brush", brushed)
       .on("end", brushended);
-
   var dot = g.append("g")
       .attr("fill-opacity", 0.2)
     .selectAll("circle")
@@ -51,7 +50,7 @@ d3.csv("datasets/TimeLine.csv").then(function(csv) {
         cx = d3.mouse(this)[0],
         x0 = cx - dx / 2,
         x1 = cx + dx / 2;
-    d3.select(this.parentNode).call(brush.move, x1 > width ? [width - dx, width] : x0 < 0 ? [0, dx] : [x0, x1]);
+    d3.select(this.parentNode).call(brush.move, x1 > width ? [width - dx, width] : x0 < 0 ? [0, dx] : [x0, x1+40]);
   }
 
   function brushed() {
@@ -64,7 +63,7 @@ d3.csv("datasets/TimeLine.csv").then(function(csv) {
     if (!d3.event.sourceEvent) return; // Only transition after input.
     if (!d3.event.selection) return; // Ignore empty selections.
     var d0 = d3.event.selection.map(x.invert),
-        d1 = d0.map(Math.round);
+      d1 = d0.map(d3.timeYear.round);
 
     // If empty when rounded, use floor & offset instead.
     if (d1[0] >= d1[1]) {
@@ -73,7 +72,7 @@ d3.csv("datasets/TimeLine.csv").then(function(csv) {
     }
 
     d3.select(this).transition().call(brush.move, d1.map(x));
-    lineChart.axis.min({x:d1[0]+"-01-01"}); //Start date
-    lineChart.axis.max({x:d1[1]+"-01-01"}); //End date
+    lineChart.axis.min({x:d1[0]}); //Start date
+    lineChart.axis.max({x:d1[1]}); //End date
   }
 });
