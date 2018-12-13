@@ -2,7 +2,7 @@
   //  data = d3.range(800).map(function() { return [randomX(), 0.5]; });
 d3.csv("datasets/TimeLine.csv").then(function(csv) {
   var data = csv.map(function(d) {
-    return [new Date(d.Data), 0.5];
+    return [new Date(d.Data), 0.5, d.Type];
   });
   var	width=1300, height= 50,
       svg = d3.select("#timeLine").append("svg")
@@ -28,13 +28,25 @@ d3.csv("datasets/TimeLine.csv").then(function(csv) {
       .on("end", brushended);
 
   var dot = g.append("g")
-      .attr("fill-opacity", 0.2)
+      .attr("fill-opacity", 1)
     .selectAll("circle")
     .data(data)
     .enter().append("circle")
       .attr("transform", function(d) { return "translate(" + x(d[0]) + "," + y(d[1]) + ")"; })
-      .attr("r", 3.5);
-      //.on("mouseover", function(d) {console.log(d);});
+      .attr("r", 3.5)
+      .attr("fill", function(d) {if (d[2] == "Disaster") {return "#e6194B"}
+                                  else if (d[2] == "Economics") {return "#3cb44b"}
+                                  else if (d[2] == "War") {return "#f032e6"}
+                                  else if (d[2] == "Politics") {return "#bfef45"}
+                                  else if (d[2] == "Technology") {return "#f58231"}
+                                  else if (d[2] == "Terrorism") {return "#000075"}
+                                  else if (d[2] == "Death") {return "#9A6324"}
+                                  else if (d[2] == "Crime") {return "#ffe119"}
+                                  else if (d[2] == "Celebration") {return "#911eb4"}
+                                  else if (d[2] == "Space") {return "#800000"}
+
+      })
+      .on("mouseover", function(d) {console.log(d);});
 
   g.append("g")
       .call(brush)
