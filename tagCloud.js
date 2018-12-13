@@ -1,22 +1,52 @@
 var cloud;
-d3.csv("datasets/TagCloud.csv").then(function(data) {
-	console.log(data);
-	writer = []
-	star = []
-	director = []
+var actorAction = [];
+var actorAdventure = [];
+var actorAnimation = [];
+var actorBiography = [];  //Short csv version
+var actorComedy = [];
+var actorCrime = [];
+var actorDrama = [];
+var actorFamily = [];
+var actorFantasy = [];
+//var dataHistory = ["History"];    //Long csv version
+var actorHorror = [];
+//var dataMusic = ["Music"];        //Long csv version
+var actorMystery = [];
+var actorRomance = [];
+var actorSciFi = [];
+var words;
+d3.csv("datasets/TagCloudActors.csv").then(function(data) {
     data.forEach(function(d) {
-        writer.push(d.writer);
-				star.push(d.star);
-        director.push(d.director);
+        actorAction.push(d.Action.split(", "));
+				actorAdventure.push(d.Adventure.split(", "));
+				actorAnimation.push(d.Animation.split(", "));
+				actorBiography.push(d.Biography.split(", "));
+				actorComedy.push(d.Comedy.split(", "));
+				actorCrime.push(d.Crime.split(", "));
+				actorDrama.push(d.Drama.split(", "));
+				actorFamily.push(d.Family.split(", "));
+				actorFantasy.push(d.Fantasy.split(", "));
+				actorHorror.push(d.Horror.split(", "));
+				actorMystery.push(d.Mystery.split(", "));
+				actorRomance.push(d.Romance.split(", "));
+				actorSciFi.push(d['Sci-Fi'].split(", "));
 })
-
-  var answer = sortByFrequency(writer);
+  merge = actorAction.concat(actorAdventure, actorAnimation, actorBiography, actorComedy, actorCrime, actorDrama,
+		 actorFamily, actorFantasy, actorHorror, actorMystery, actorRomance, actorSciFi);
+	actors = [].concat.apply([], merge);
+  var answer = sortByFrequency(actors);
 	var sorted_words = answer[0];
 	var size = answer[1];
-	words = sorted_words.map(function(d) {
+	 words = sorted_words.map(function(d) {
 			  return {text: d, size: size[d]};
 			});
 
+	for (i = 0; i < words.length; i++) {
+			  if(words[i].text === ""){
+						words.splice(i, 1);
+				}
+	}
+	console.log(words);
 	var fontName = "Impact",
 	  cWidth = 500,
 	  cHeight = 250,
@@ -43,7 +73,7 @@ d3.csv("datasets/TagCloud.csv").then(function(data) {
 		  d3.max(words, function(d) { return d.size; })
 		])
 		//.range([20,120]),
-		.range([20,30]), // tbc
+		.range([15,35]), // tbc
 	  //fill = d3.scale.category20();
 	  fill = d3.scaleOrdinal(d3.schemePaired);
 
@@ -95,7 +125,7 @@ d3.csv("datasets/TagCloud.csv").then(function(data) {
 		.selectAll("text")
 		.data(words)
 		.enter().append("text")
-		.style("font-size", function(d) { return 10 + size[d.text] * 2 + "px"; })
+		.style("font-size", function(d) { return d.size + "px"; })
 		.style("font-family", fontName)
 		.style("fill", function(d, i) { return fill(i); })
 		.attr("text-anchor", "middle")
