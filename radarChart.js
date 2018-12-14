@@ -1,3 +1,14 @@
+var msreading = [100,300,10,20];
+var reads = [1, 20, 30, 90];
+var kb_written = [1500, 16000, 4500, 100000]; // obviously you can't have all of these on same chart
+
+function normalizeData(val, my_array) {
+  var val_max = _.max(my_array); // underscore max and min functions
+  var val_min = _.min(my_array);
+  var new_val = val == 0 ? 0 : ((val - val_min) / (val_max - val_min)).toFixed(2);
+  return new_val;
+}
+
 var data = [
   {
     "key": "Monster Truck",

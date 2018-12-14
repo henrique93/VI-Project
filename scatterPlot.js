@@ -241,12 +241,20 @@ d3.csv("datasets/BubbleChart.csv").then(function(csv) {
                 var format = id === 'data1' ? d3.format(',') : d3.format("");
                 return format(value);
              },
+             name: function (name, ratio, id, index) {
+               if (name == "SciFi") {
+                 return "Sci-Fi";
+               }
+               else {
+                 return name;
+               }
+             },
              title: function(x) {
                 var indOfVal;
                 if (genre == "Action") {
                   date = formatDate(x);
                   indOfVal = dataAction_x.indexOf(date);
-                  return namesAction[indOfVal];
+                  return (namesAction[indOfVal]);
                 }
                 else if (genre == "Adventure") {
                   date = formatDate(x);
@@ -354,6 +362,9 @@ d3.csv("datasets/BubbleChart.csv").then(function(csv) {
       },
       legend: {
           show: false
+      },
+      transition: {
+        duration: 2000
       }
   });
 });
