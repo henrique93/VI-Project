@@ -13,6 +13,7 @@ div {
 #title {
     height: 5%;
     width: 100%;
+    line-height: 0%;
     text-align: center;
     font-weight: bold;
     background: #fff;
@@ -33,7 +34,7 @@ div {
 #bubbleChart {
   height: 45%;
   width: 60%;
-  background: #777;
+  background: #999;
 }
 #radarChart {
   height: 45%;
