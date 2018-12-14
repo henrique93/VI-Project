@@ -88,5 +88,7 @@ d3.csv("datasets/TimeLine.csv").then(function(csv) {
     d3.select(this).transition().call(brush.move, d1.map(x));
     lineChart.axis.min({x:d1[0]}); //Start date
     lineChart.axis.max({x:d1[1]}); //End date
+    scatterPlot.axis.min({x:d1[0]}); //Start date
+    scatterPlot.axis.max({x:d1[1]}); //End date
   }
 });

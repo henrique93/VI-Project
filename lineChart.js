@@ -103,10 +103,10 @@ d3.csv("datasets/LineChartShort.csv").then(function(csv) {
                    $$.api.toggle(id);
                    $$.isTargetToShow(id) ? $$.api.focus(id) : $$.api.revert();
                    if ($$.isTargetToShow(id) == true) {
-                     bubbles.attr("visibility", "visible");
+                     scatterPlot.show(id);
                    }
                    else {
-                     bubbles.attr("visibility", "hidden");
+                     scatterPlot.hide(id);
                    }
                  }
               }
