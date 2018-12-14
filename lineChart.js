@@ -36,7 +36,7 @@ d3.csv("datasets/LineChartShort.csv").then(function(csv) {
         //dataMusic.push(d['Music']);        //Long csv version
         dataMystery.push(d['Mystery']);
         dataRomance.push(d['Romance']);
-        dataSciFi.push(d['Sci-Fi'/*Science Fiction*/]);  //Long csv version is Science Fiction Short is Sci-Fi
+        dataSciFi.push(d['SciFi']);
         //dataThriller.push(d['Thriller']);  //Long csv version
         //dataWar.push(d['War']);            //Long csv version
         //dataWestern.push(d['Western']);    //Long csv version
@@ -93,8 +93,7 @@ d3.csv("datasets/LineChartShort.csv").then(function(csv) {
                onclick: function legend_on_click(id) {
                  var $$ = this;
                  var regions = $$.mainRegion;
-                 var genre = id;
-                 var bubbles = d3.selectAll("[genre="+genre+"]");
+                 if (id == "Sci-Fi") { id = "SciFi" }
                  if ($$.d3.event.altKey) {
                    $$.api.hide();
                    $$.api.show(id);

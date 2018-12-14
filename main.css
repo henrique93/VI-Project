@@ -22,19 +22,19 @@ div {
 #lineChart {
 	height: 40%;
 	width: 60%;
-	background: #DDD;
+	background: #fff;
 }
 
 #tagCloud {
 	height: 40%;
 	width: 40%;
-	background: #AAA;
+	background: #fff;
 }
 
 #bubbleChart {
   height: 45%;
   width: 60%;
-  background: #999;
+  background: #fff;
 }
 #radarChart {
   height: 45%;

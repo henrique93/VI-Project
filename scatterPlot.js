@@ -30,7 +30,7 @@ d3.csv("datasets/BubbleChart.csv").then(function(csv) {
   var namesMusic = ["Music"];        //Long csv version
   var namesMystery = ["Mystery"];
   var namesRomance = ["Romance"];
-  var namesSciFi = ["Sci-Fi"];
+  var namesSciFi = ["SciFi"];
   var namesThriller = ["Thriller"];  //Long csv version
   var namesWar = ["War"];            //Long csv version
   var namesWestern = ["Western"];    //Long csv version
@@ -49,7 +49,7 @@ d3.csv("datasets/BubbleChart.csv").then(function(csv) {
   var dataMusic = ["Music"];        //Long csv version
   var dataMystery = ["Mystery"];
   var dataRomance = ["Romance"];
-  var dataSciFi = ["Sci-Fi"];
+  var dataSciFi = ["SciFi"];
   var dataThriller = ["Thriller"];  //Long csv version
   var dataWar = ["War"];            //Long csv version
   var dataWestern = ["Western"];    //Long csv version
@@ -68,7 +68,7 @@ d3.csv("datasets/BubbleChart.csv").then(function(csv) {
   var dataMusic_x = ["Music_x"];        //Long csv version
   var dataMystery_x = ["Mystery_x"];
   var dataRomance_x = ["Romance_x"];
-  var dataSciFi_x = ["Sci-Fi_x"];
+  var dataSciFi_x = ["SciFi_x"];
   var dataThriller_x = ["Thriller_x"];  //Long csv version
   var dataWar_x = ["War_x"];            //Long csv version
   var dataWestern_x = ["Western_x"];    //Long csv version
@@ -148,7 +148,7 @@ d3.csv("datasets/BubbleChart.csv").then(function(csv) {
       dataRomance.push(d.score);
       dataRomance_x.push(d.released);
     }
-    else if (d.genre == "Sci-Fi") {
+    else if (d.genre == "SciFi") {
       namesSciFi.push(d.title);
       dataSciFi.push(d.score);
       dataSciFi_x.push(d.released);
@@ -187,7 +187,7 @@ d3.csv("datasets/BubbleChart.csv").then(function(csv) {
             //Music: 'Music_x',         //Long csv version
             Mystery: 'Mystery_x',
             Romance: 'Romance_x',
-            //SciFi: 'SciFi_x',
+            SciFi: 'SciFi_x',
             //Thriller: 'Thriller_x',   //Long csv version
             //War: 'War_x',             //Long csv version
             //Western: 'Western_x',     //Long csv version
@@ -208,10 +208,11 @@ d3.csv("datasets/BubbleChart.csv").then(function(csv) {
               //dataMusic,     //Long csv version
               dataMystery,
               dataRomance,
-              //dataSciFi,
+              dataSciFi,
               //dataThriller,  //Long csv version
               //dataWar,       //Long csv version
               //dataWestern    //Long csv version
+
               dataAction_x,
               dataAdventure_x,
               dataAnimation_x,
@@ -226,7 +227,7 @@ d3.csv("datasets/BubbleChart.csv").then(function(csv) {
               //dataMusic_x,     //Long csv version
               dataMystery_x,
               dataRomance_x,
-              //dataSciFi_x,
+              dataSciFi_x,
               //dataThriller_x,  //Long csv version
               //dataWar_x,       //Long csv version
               //dataWestern_x    //Long csv version
@@ -347,6 +348,9 @@ d3.csv("datasets/BubbleChart.csv").then(function(csv) {
           y: {
               label: 'Score'
           }
+      },
+      color: {
+        pattern: ["#e6194B", "#3cb44b", "#f032e6", "#bfef45", "#f58231", "#000075", "#9A6324", "#ffe119", "#911eb4", "#800000", "#42d4f4", "#fabebe", "#4363d8"]
       },
       legend: {
           show: false
