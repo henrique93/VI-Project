@@ -1,6 +1,8 @@
 // Encapsulate the word cloud functionality
 var cloud = null;
 
+var years = [new Date("1986"), new Date("2016")];
+
 var actorAction = [];
 var actorAdventure = [];
 var actorAnimation = [];
@@ -51,7 +53,16 @@ function sortByFrequency(arr) {
 }
 
 function getWords() {
-	conc = [].concat.apply([], activeGenre);;
+	first = years[0].getFullYear() - 1986;
+	last = years[1].getFullYear() - 1986;
+	console.log(first);
+	console.log(last);
+	cop = deepCopy(activeGenre);
+	toUse = [];
+	cop.forEach(function(el) {
+		toUse.push(el.slice(first, last+1));
+	});
+	conc = [].concat.apply([], toUse);
 	console.log(conc);
 	actors = [].concat.apply([], conc);
   answer = sortByFrequency(actors);
@@ -91,8 +102,7 @@ d3.csv("datasets/TagCloudActors.csv").then(function(data) {
 	})
 	activeGenre = [actorAction, actorAdventure, actorAnimation, actorBiography, actorComedy, actorCrime, actorDrama,
 		 actorFamily, actorFantasy, actorHorror, actorMystery, actorRomance, actorSciFi];
-		 console.log(actorAction);
-console.log(activeGenre);
+
 	getWords();
 
 	function wordCloud(selector) {

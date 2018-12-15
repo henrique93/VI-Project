@@ -126,13 +126,13 @@ d3.csv("datasets/LineChartShort.csv").then(function(csv) {
                      activeGenre.splice(index, 0, act);
                      if (id == "Sci-Fi") { id = "SciFi" }
                      scatterPlot.show(id);
-                     setTimeout(function(){showNewWords(words)}, 1500);
+                     setTimeout(function(){showNewWords()}, 1500);
                    }
                    else {
                      activeGenre.splice(index, 1);
                      if (id == "Sci-Fi") { id = "SciFi" }
                      scatterPlot.hide(id);
-                     setTimeout(function(){showNewWords(words)}, 1500);
+                     setTimeout(function(){showNewWords()}, 1500);
                    }
                  }
               }
