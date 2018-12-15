@@ -113,7 +113,7 @@ function wordCloud(selector) {
         //Exiting words
         cloud.exit()
             .transition()
-                .duration(200)
+                .duration(1000)
                 .style('fill-opacity', 0)
                 .attr('font-size', 1)
                 .remove();
@@ -128,6 +128,7 @@ function wordCloud(selector) {
                 .rotate(function() { return 0; })
                 .font("Impact")
                 .fontSize(function(d) { return fontScale(d.size); })
+								.random(function(d) { return 1; })
                 .on("end", draw)
                 .start();
         }

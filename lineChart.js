@@ -106,11 +106,11 @@ d3.csv("datasets/LineChartShort.csv").then(function(csv) {
                    $$.isTargetToShow(id) ? $$.api.focus(id) : $$.api.revert();
                    if ($$.isTargetToShow(id) == true) {
                      scatterPlot.show(id);
-                     showNewWords();
+                     setTimeout(showNewWords(words), 2500);
                    }
                    else {
                      scatterPlot.hide(id);
-                     showNewWords();
+                     setTimeout(showNewWords(words), 2500);
                    }
                  }
               }
