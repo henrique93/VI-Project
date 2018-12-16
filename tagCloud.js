@@ -3,6 +3,7 @@ var cloud = null;
 
 var years = [new Date("1986"), new Date("2016")];
 
+
 var actorAction = [];
 var actorAdventure = [];
 var actorAnimation = [];
@@ -39,7 +40,6 @@ var words = [];
 var activeGenre = []
 
 function showNewWords() {
-	console.log(activeGenre);
 	getWords();
 	cloud.update(words);
 }
@@ -55,15 +55,12 @@ function sortByFrequency(arr) {
 function getWords() {
 	first = years[0].getFullYear() - 1986;
 	last = years[1].getFullYear() - 1986;
-	console.log(first);
-	console.log(last);
 	cop = deepCopy(activeGenre);
 	toUse = [];
 	cop.forEach(function(el) {
 		toUse.push(el.slice(first, last+1));
 	});
 	conc = [].concat.apply([], toUse);
-	console.log(conc);
 	actors = [].concat.apply([], conc);
   answer = sortByFrequency(actors);
 	sorted_words = answer[0];

@@ -93,6 +93,7 @@ d3.csv("datasets/TimeLine.csv").then(function(csv) {
     scatterPlot.axis.max({x:d1[1]}); //End date
 
     years = [d1[0], d1[1]];
+    updateRadar();
     setTimeout(function(){showNewWords()}, 1500);
   }
 });
