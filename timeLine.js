@@ -91,5 +91,8 @@ d3.csv("datasets/TimeLine.csv").then(function(csv) {
 
     scatterPlot.axis.min({x:d1[0]}); //Start date
     scatterPlot.axis.max({x:d1[1]}); //End date
+
+    years = [d1[0], d1[1]];
+    setTimeout(function(){showNewWords()}, 1500);
   }
 });

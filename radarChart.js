@@ -11,31 +11,31 @@ function normalizeData(val, my_array) {
 
 var data = [
   {
-    "key": "Monster Truck",
+    "key": "1995-2000",
     "values": [
-      { "key": "Score", "value": 9 },
-      { "key": "Revenue", "value": 2 },
+      { "key": "Score", "value": 7.5 },
+      { "key": "Revenue", "value": 4 },
       { "key": "Budget", "value": 3 },
-      { "key": "Runtime", "value": 7 },
-      { "key": "Popularity", "value": 4 }
+      { "key": "Runtime", "value": 6.5 },
+      { "key": "Popularity", "value": 5 }
     ]
   }, {
-    "key": "Drag Racer",
+    "key": "2000-2005",
     "values": [
-      { "key": "Score", "value": 3 },
-      { "key": "Revenue", "value": 2.6 },
-      { "key": "Budget", "value": 2 },
-      { "key": "Runtime", "value": 3 },
-      { "key": "Popularity", "value": 4.7 }
+      { "key": "Score", "value": 6.8 },
+      { "key": "Revenue", "value": 6.2 },
+      { "key": "Budget", "value": 5.4 },
+      { "key": "Runtime", "value": 4.5 },
+      { "key": "Popularity", "value": 6.7 }
     ]
   }, {
-    "key": "Family Saloon",
+    "key": "2005-2010",
     "values": [
       { "key": "Score", "value": 7.2 },
-      { "key": "Revenue", "value": 3 },
-      { "key": "Budget", "value": 2.8 },
-      { "key": "Runtime", "value": 4.3 },
-      { "key": "Popularity", "value": 6.1 }
+      { "key": "Revenue", "value": 5.2 },
+      { "key": "Budget", "value": 6.4 },
+      { "key": "Runtime", "value": 5 },
+      { "key": "Popularity", "value": 8.1 }
     ]
   }];
 var colors = d3.ez.palette.categorical(1);

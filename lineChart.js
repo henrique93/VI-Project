@@ -1,5 +1,21 @@
 var lineChart;
 
+function getGenreIndex(genre) {
+  if (genre == "Action") {return 0;}
+  else if(genre == "Adventure") {return 1;}
+  else if(genre == "Animation") {return 2;}
+  else if(genre == "Biography") {return 3;}
+  else if(genre == "Comedy") {return 4;}
+  else if(genre == "Crime") {return 5;}
+  else if(genre == "Drama") {return 6;}
+  else if(genre == "Family") {return 7;}
+  else if(genre == "Fantasy") {return 8;}
+  else if(genre == "Horror") {return 9;}
+  else if(genre == "Mystery") {return 10;}
+  else if(genre == "Romance") {return 11;}
+  else if(genre == "SciFi" || genre == "Sci-Fi") {return 12;}
+}
+
 d3.csv("datasets/LineChartShort.csv").then(function(csv) {
       //Movie types: Action,Adventure,Animation,Biography,Comedy,Crime,Drama,Family,Fantasy,Horror,Mystery,Romance,Sci-Fi
       var dataAction = ["Action"];
@@ -96,7 +112,6 @@ d3.csv("datasets/LineChartShort.csv").then(function(csv) {
                onclick: function legend_on_click(id) {
                  var $$ = this;
                  var regions = $$.mainRegion;
-                 if (id == "Sci-Fi") { id = "SciFi" }
                  if ($$.d3.event.altKey) {
                    $$.api.hide();
                    $$.api.show(id);
@@ -104,13 +119,20 @@ d3.csv("datasets/LineChartShort.csv").then(function(csv) {
                  else {
                    $$.api.toggle(id);
                    $$.isTargetToShow(id) ? $$.api.focus(id) : $$.api.revert();
+                   var index = getGenreIndex(id);
+                   console.log(id)
                    if ($$.isTargetToShow(id) == true) {
+                     var act = getActor(index);
+                     activeGenre.splice(index, 0, act);
+                     if (id == "Sci-Fi") { id = "SciFi" }
                      scatterPlot.show(id);
-                     setTimeout(showNewWords(words), 2500);
+                     setTimeout(function(){showNewWords()}, 1500);
                    }
                    else {
+                     activeGenre.splice(index, 1);
+                     if (id == "Sci-Fi") { id = "SciFi" }
                      scatterPlot.hide(id);
-                     setTimeout(showNewWords(words), 2500);
+                     setTimeout(function(){showNewWords()}, 1500);
                    }
                  }
               }
