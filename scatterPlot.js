@@ -172,7 +172,7 @@ d3.csv("datasets/ScatterPlot.csv").then(function(csv) {
   scatterPlot = c3.generate({
     bindto: '#scatterPlot',
     title: {
-      text: "Movie's scores by release date",
+      text: "Movie's score by release date",
       font: "times"
     },
     data: {

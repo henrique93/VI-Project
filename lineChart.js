@@ -123,16 +123,19 @@ d3.csv("datasets/LineChartShort.csv").then(function(csv) {
                    if ($$.isTargetToShow(id) == true) {
                      var act = getActor(index);
                      var val = getValue(index);
-                     activeGenre.splice(index, 0, act);
-                     activeValues.splice(index, 0, val);
+                     activeGenre.splice(index, 1, act);
+                     activeValues.splice(index, 1, val);
                      if (id == "Sci-Fi") { id = "SciFi" }
                      scatterPlot.show(id);
+                     updateRadar();
                      setTimeout(function(){showNewWords()}, 1500);
                    }
                    else {
-                     activeGenre.splice(index, 1);
+                     activeGenre.splice(index, 1, []);
+                     activeValues.splice(index, 1, []);
                      if (id == "Sci-Fi") { id = "SciFi" }
                      scatterPlot.hide(id);
+                     updateRadar();
                      setTimeout(function(){showNewWords()}, 1500);
                    }
                  }

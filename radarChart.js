@@ -1,7 +1,7 @@
 var radarChart;
 
 var minRadar = [3, 17472, 7000, 69, 1280];
-var maxRadar = [8.5, 2790000000, 380000000, 219, 1861666];
+var maxRadar = [8.3, 788241776, 129888888, 202, 1122688];
 
 function updateRadar() {
   first = years[0].getFullYear() - 1986;
@@ -13,8 +13,9 @@ function updateRadar() {
   runtime = 0;
   votes = 0;
   num = 0;
+  cop = deepCopy(activeValues);
   toUse = [];
-  activeValues.forEach(function(el) {
+  cop.forEach(function(el) {
 		toUse.push(el.slice(first, last+1));
 	});
   conc = [].concat.apply([], toUse);
@@ -28,7 +29,6 @@ function updateRadar() {
       num++;
     }
   })
-  console.log(conc);
   score = ((score / num) / maxRadar[0]) * 10;
   revenue = ((revenue / num) / maxRadar[1]) * 10;
   budget = ((budget / num) / maxRadar[2]) * 10;
@@ -36,7 +36,6 @@ function updateRadar() {
   votes = ((votes / num) / maxRadar[4]) * 10;
 
   dataNorm = [score, revenue, budget, runtime, votes];
-  console.log(dataNorm);
   radarChart.data.datasets.forEach((dataset) => {
       dataset.data = dataNorm;
   });
@@ -94,7 +93,6 @@ d3.csv("datasets/RadarChart.csv").then(function(csv) {
 
   activeValues = [valuesAction, valuesAdventure, valuesAnimation, valuesBiography, valuesComedy, valuesCrime, valuesDrama, valuesFamily,
                   valuesFantasy, valuesHorror, valuesMystery, valuesRomance, valuesSciFi];
-  console.log(activeValues);
 
   radarChart = new Chart(document.getElementById("radarChartCanvas"), {
       type: 'radar',
@@ -108,7 +106,7 @@ d3.csv("datasets/RadarChart.csv").then(function(csv) {
             pointBorderColor: "#fff",
             pointBackgroundColor: "rgba(255,99,132,1)",
             pointBorderColor: "#fff",
-            data: [8.5, 2790000000, 380000000, 219, 1861666]
+            data: [0, 0, 0, 0, 0]
           }]
       },
       options: {
@@ -139,20 +137,24 @@ d3.csv("datasets/RadarChart.csv").then(function(csv) {
                     var dataPoint = item.yLabel;
                     var dataType = item.index;
                     var unit = '';
-                    if (dataType == 1) {
+                    if (dataType == 0) {
+                      dataPoint = Math.round(dataPoint * 10) / 10;
+                    }
+                    else if (dataType == 1) {
                       unit = ' $';
-                      dataPoint = dataPoint;
+                      dataPoint = Math.round(dataPoint * maxRadar[1] / 10);
                     }
                     else if (dataType == 2) {
                       unit = ' $';
-                      dataPoint = dataPoint;
+                      dataPoint = Math.round(dataPoint * maxRadar[2] / 10);
                     }
                     else if (dataType == 3) {
                       unit = ' min';
-                      dataPoint = dataPoint;
+                      dataPoint = Math.round(dataPoint * maxRadar[3] / 10);
                     }
                     else if (dataType == 4) {
-                      dataPoint = dataPoint;
+                      unit = ' votes';
+                      dataPoint = Math.round(dataPoint * maxRadar[4] / 10);
                     }
                     return datasetLabel + ': '+ dataPoint + unit;
                    }
@@ -160,4 +162,5 @@ d3.csv("datasets/RadarChart.csv").then(function(csv) {
         }
       }
   });
+  updateRadar();
 });
