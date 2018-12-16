@@ -62,6 +62,9 @@ d3.csv("datasets/LineChartShort.csv").then(function(csv) {
 
     lineChart = c3.generate({
       bindto: '#lineChart',
+      title: {
+        text: "Number of movies per genre each year"
+      },
       data: {
           x: 'x',
   //        xFormat: '%Y%m%d', // 'xFormat' can be used as custom format of 'x'
