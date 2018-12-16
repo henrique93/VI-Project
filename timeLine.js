@@ -2,10 +2,15 @@
   //  data = d3.range(800).map(function() { return [randomX(), 0.5]; });
 d3.csv("datasets/TimeLine.csv").then(function(csv) {
   var data = csv.map(function(d) {
-    return [new Date(d.Data), 0.5, d.Type];
+    //was 0.5 insted was 0
+    return [new Date(d.Data), 0 , d.Type];
   });
-  var	width=1300, height= 50,
-      svg = d3.select("#timeLine").append("svg")
+
+//special higth for the brush, previous there was no brushheight var, just heigth.
+  var brushheight = 40;
+
+  var	width=1300, height= 60,
+    svg = d3.select("#timeLine").append("svg")
   	.attr("width", width)
   	.attr("height", height)
   	.attr("id","teste");
@@ -23,17 +28,17 @@ d3.csv("datasets/TimeLine.csv").then(function(csv) {
       .range([height, 0]);
 
   var brush = d3.brushX()
-      .extent([[10, 0], [width, height]])
+      .extent([[10, 0], [width, brushheight]])
       .on("start brush", brushed)
       .on("end", brushended);
 
   var dot = g.append("g")
       .attr("fill-opacity", 1)
-    .selectAll("circle")
-    .data(data)
-    .enter().append("circle")
+      .selectAll("circle")
+      .data(data)
+      .enter().append("circle")
       .attr("transform", function(d) { return "translate(" + x(d[0]) + "," + y(d[1]) + ")"; })
-      .attr("r", 3.5)
+      .attr("r", 6) //was 3.5
       .attr("fill", function(d) {if (d[2] == "Disaster") {return "#e6194B"}
                                   else if (d[2] == "Economics") {return "#3cb44b"}
                                   else if (d[2] == "War") {return "#f032e6"}
@@ -46,7 +51,9 @@ d3.csv("datasets/TimeLine.csv").then(function(csv) {
                                   else if (d[2] == "Space") {return "#800000"}
 
       })
-      .on("mouseover", function(d) {console.log(d);});
+      .on("mouseover", function(d) {
+        console.log("Sou um evento!");
+      });
 
   g.append("g")
       .call(brush)
