@@ -89,10 +89,7 @@ d3.csv("datasets/LineChartShort.csv").then(function(csv) {
               //dataThriller,  //Long csv version
               //dataWar,       //Long csv version
               //dataWestern    //Long csv version
-          ],
-          onclick: function (datum, element) {
-            console.log("ola");
-          }
+          ]
       },
       axis: {
           x: {
@@ -123,10 +120,11 @@ d3.csv("datasets/LineChartShort.csv").then(function(csv) {
                    $$.api.toggle(id);
                    $$.isTargetToShow(id) ? $$.api.focus(id) : $$.api.revert();
                    var index = getGenreIndex(id);
-                   console.log(id)
                    if ($$.isTargetToShow(id) == true) {
                      var act = getActor(index);
+                     var val = getValue(index);
                      activeGenre.splice(index, 0, act);
+                     activeValues.splice(index, 0, val);
                      if (id == "Sci-Fi") { id = "SciFi" }
                      scatterPlot.show(id);
                      setTimeout(function(){showNewWords()}, 1500);

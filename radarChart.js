@@ -1,30 +1,115 @@
 var radarChart;
 
-function updateRadar(data) {
-    radarChart.data.datasets.forEach((dataset) => {
-        dataset.data = data;
-    });
-    radarChart.update();
+var minRadar = [3, 17472, 7000, 69, 1280];
+var maxRadar = [8.5, 2790000000, 380000000, 219, 1861666];
+
+function updateRadar() {
+  first = years[0].getFullYear() - 1986;
+  last = years[1].getFullYear() - 1986;
+  dataNorm = [];
+  score = 0;
+  revenue = 0;
+  budget = 0;
+  runtime = 0;
+  votes = 0;
+  num = 0;
+  toUse = [];
+  activeValues.forEach(function(el) {
+		toUse.push(el.slice(first, last+1));
+	});
+  conc = [].concat.apply([], toUse);
+  conc.forEach(function(yr) {
+    if (yr[0] != "0") {
+      score = score + parseInt(yr[0]);
+      revenue = revenue + parseInt(yr[1]);
+      budget = budget + parseInt(yr[2]);
+      runtime = runtime + parseInt(yr[3]);
+      votes = votes + parseInt(yr[4]);
+      num++;
+    }
+  })
+  console.log(conc);
+  score = ((score / num) / maxRadar[0]) * 10;
+  revenue = ((revenue / num) / maxRadar[1]) * 10;
+  budget = ((budget / num) / maxRadar[2]) * 10;
+  runtime = ((runtime / num) / maxRadar[3]) * 10;
+  votes = ((votes / num) / maxRadar[4]) * 10;
+
+  dataNorm = [score, revenue, budget, runtime, votes];
+  console.log(dataNorm);
+  radarChart.data.datasets.forEach((dataset) => {
+      dataset.data = dataNorm;
+  });
+  radarChart.update();
 }
 
-//d3.csv("datasets/radarChart.csv").then(function(csv) {
+function getValue(index) {
+	if (index == 0) {return valuesAction;}
+  else if(index == 1) {return valuesAdventure;}
+  else if(index == 2) {return valuesAnimation;}
+  else if(index == 3) {return valuesBiography;}
+  else if(index == 4) {return valuesComedy;}
+  else if(index == 5) {return valuesCrime;}
+  else if(index == 6) {return valuesDrama;}
+  else if(index == 7) {return valuesFamily;}
+  else if(index == 8) {return valuesFantasy;}
+  else if(index == 9) {return valuesHorror;}
+  else if(index == 10) {return valuesMystery;}
+  else if(index == 11) {return valuesRomance;}
+  else if(index == 12) {return valuesSciFi;}
+}
 
+var valuesAction = [];
+var valuesAdventure = [];
+var valuesAnimation = [];
+var valuesBiography = [];
+var valuesComedy = [];
+var valuesCrime = [];
+var valuesDrama = [];
+var valuesFamily = [];
+var valuesFantasy = [];
+var valuesHorror = [];
+var valuesMystery = [];
+var valuesRomance = [];
+var valuesSciFi = [];
 
+var activeValues;
+
+d3.csv("datasets/RadarChart.csv").then(function(csv) {
+  csv.forEach(function(d) {
+    valuesAction.push(d.Action.split("; "));
+    valuesAdventure.push(d.Adventure.split("; "));
+    valuesAnimation.push(d.Animation.split("; "));
+    valuesBiography.push(d.Biography.split("; "));
+    valuesComedy.push(d.Comedy.split("; "));
+    valuesCrime.push(d.Crime.split("; "));
+    valuesDrama.push(d.Drama.split("; "));
+    valuesFamily.push(d.Family.split("; "));
+    valuesFantasy.push(d.Fantasy.split("; "));
+    valuesHorror.push(d.Horror.split("; "));
+    valuesMystery.push(d.Mystery.split("; "));
+    valuesRomance.push(d.Romance.split("; "));
+    valuesSciFi.push(d['Sci-Fi'].split("; "));
+  })
+
+  activeValues = [valuesAction, valuesAdventure, valuesAnimation, valuesBiography, valuesComedy, valuesCrime, valuesDrama, valuesFamily,
+                  valuesFantasy, valuesHorror, valuesMystery, valuesRomance, valuesSciFi];
+  console.log(activeValues);
 
   radarChart = new Chart(document.getElementById("radarChartCanvas"), {
       type: 'radar',
       data: {
-      labels: ['Score', 'Revenue', 'Budget', 'Runtime', 'Votes'],
-      datasets: [{
-          label: "Average",
-          fill: true,
-          backgroundColor: "rgba(255,99,132,0.2)",
-          borderColor: "rgba(255,99,132,1)",
-          pointBorderColor: "#fff",
-          pointBackgroundColor: "rgba(255,99,132,1)",
-          pointBorderColor: "#fff",
-          data: [10, 9, 4, 5, 5]
-        }]
+        labels: ['Score', 'Revenue', 'Budget', 'Runtime', 'Votes'],
+        datasets: [{
+            label: "Average",
+            fill: true,
+            backgroundColor: "rgba(255,99,132,0.2)",
+            borderColor: "rgba(255,99,132,1)",
+            pointBorderColor: "#fff",
+            pointBackgroundColor: "rgba(255,99,132,1)",
+            pointBorderColor: "#fff",
+            data: [8.5, 2790000000, 380000000, 219, 1861666]
+          }]
       },
       options: {
         responsive: true,
@@ -75,4 +160,4 @@ function updateRadar(data) {
         }
       }
   });
-//});
+});
