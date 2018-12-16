@@ -371,4 +371,7 @@ d3.csv("datasets/ScatterPlot.csv").then(function(csv) {
       duration: 2000
     }
   });
+  scatterPlot.axis.min({x:years[0]}); //Start date
+  scatterPlot.axis.max({x:years[1]}); //End date
+  console.log("scatterPlot initialized");
 });

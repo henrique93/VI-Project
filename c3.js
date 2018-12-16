@@ -5960,7 +5960,7 @@
 
   ChartInternal.prototype.getXAxisClipX = function () {
     var $$ = this;
-    return $$.getAxisClipX(!$$.config.axis_rotated);
+  return $$.getAxisClipX(!$$.config.axis_rotated) + Math.max(20, $$.margin.left-10);
   };
 
   ChartInternal.prototype.getXAxisClipY = function () {

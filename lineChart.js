@@ -144,4 +144,7 @@ d3.csv("datasets/LineChartShort.csv").then(function(csv) {
       }
 
   });
+  lineChart.axis.min({x:years[0]}); //Start date
+  lineChart.axis.max({x:years[1]}); //End date
+  console.log("lineChart initialized");
 });

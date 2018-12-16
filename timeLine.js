@@ -1,5 +1,6 @@
 //var randomX = d3.randomUniform(1986, 2016),
   //  data = d3.range(800).map(function() { return [randomX(), 0.5]; });
+  var start = 0;
 d3.csv("datasets/TimeLine.csv").then(function(csv) {
   var data = csv.map(function(d) {
     //was 0.5 insted was 0
@@ -55,9 +56,9 @@ d3.csv("datasets/TimeLine.csv").then(function(csv) {
         console.log("Sou um evento!");
       });
 
-  g.append("g")
+  var gBrush = g.append("g")
       .call(brush)
-      .call(brush.move, [3, 5].map(x))
+      .call(brush.move, [years[0], years[1]].map(x))
     .selectAll(".overlay")
       .each(function(d) { d.type = "selection"; }) // Treat overlay interaction as move.
       .on("mousedown touchstart", brushcentered); // Recenter before brushing.
@@ -80,6 +81,19 @@ d3.csv("datasets/TimeLine.csv").then(function(csv) {
     dot.classed("selected", function(d) { return extent[0] <= d[0] && d[0] <= extent[1]; });
   }
 
+  function updateVis(start, end) {
+    lineChart.axis.min({x:start}); //Start date
+    lineChart.axis.max({x:end}); //End date
+
+    scatterPlot.axis.min({x:start}); //Start date
+    scatterPlot.axis.max({x:end}); //End date
+
+    years = [start, end];
+    updateRadar();
+    setTimeout(function(){showNewWords()}, 1500);
+    console.log("ask");
+  }
+
   function brushended() {
     if (!d3.event.sourceEvent) return; // Only transition after input.
     if (!d3.event.selection) return; // Ignore empty selections.
@@ -91,16 +105,6 @@ d3.csv("datasets/TimeLine.csv").then(function(csv) {
       d1[0] = Math.floor(d0[0]);
       d1[1] = d1[0] + 1;
     }
-
-    d3.select(this).transition().call(brush.move, d1.map(x));
-    lineChart.axis.min({x:d1[0]}); //Start date
-    lineChart.axis.max({x:d1[1]}); //End date
-
-    scatterPlot.axis.min({x:d1[0]}); //Start date
-    scatterPlot.axis.max({x:d1[1]}); //End date
-
-    years = [d1[0], d1[1]];
-    updateRadar();
-    setTimeout(function(){showNewWords()}, 1500);
+    updateVis(d1[0], d1[1]);
   }
 });

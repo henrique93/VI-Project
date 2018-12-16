@@ -1,7 +1,7 @@
 // Encapsulate the word cloud functionality
 var cloud = null;
 
-var years = [new Date("1986"), new Date("2016")];
+var years = [new Date("1999"), new Date("2016")];
 
 
 var actorAction = [];
@@ -182,5 +182,5 @@ d3.csv("datasets/TagCloudActors.csv").then(function(data) {
 
 	//Start cycling
 	cloud.update(words);
-	cloud.update(words);
+	setTimeout(function(){showNewWords()}, 500);
 });
