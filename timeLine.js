@@ -4,7 +4,8 @@
 d3.csv("datasets/TimeLine.csv").then(function(csv) {
   var data = csv.map(function(d) {
     //was 0.5 insted was 0
-    return [new Date(d.Data), 0 , d.Type];
+    if (d.Name == "09/nov") { d.Name = "9/11" }
+    return [new Date(d.Data), 0 , d.Type, d.Name];
   });
 
 //special higth for the brush, previous there was no brushheight var, just heigth.
@@ -59,25 +60,25 @@ var tooltip = d3.select("body")
                                   else if (d[2] == "Space") {return "#800000" /*azul*/}
       })
       .on("mouseover", function(d) {
-    return tooltip.style("visibility", "visible").text('DATE: ' + String(d[0]).substring(4, 15) + ', ' + 'TYPE: ' + d[2]);
+    return tooltip.style("visibility", "visible").text(d[3] + " | Type: " + d[2]);
   })
-  
+
   // we move tooltip during of "mousemove"
-  
+
   .on("mousemove", function() {
     return tooltip.style("top", (event.pageY - 30) + "px")
       .style("left", event.pageX + "px");
   })
-  
+
   // we hide our tooltip on "mouseout"
-  
+
   .on("mouseout", function() {
     return tooltip.style("visibility", "hidden");
   });/*
     // Para debug
     .on("mouseover", function(d) {
-        console.log("Sou um evento!");        
-        var res = String(d[0]).substring(0, 15);// select importante date 
+        console.log("Sou um evento!");
+        var res = String(d[0]).substring(0, 15);// select importante date
         console.log(res); //full date of the evento
         console.log(d[0]);
         console.log(d[1]); // 0 ?
