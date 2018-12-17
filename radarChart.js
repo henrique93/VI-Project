@@ -101,10 +101,10 @@ d3.csv("datasets/RadarChart.csv").then(function(csv) {
         datasets: [{
             label: "Average",
             fill: true,
-            backgroundColor: "rgba(255,99,132,0.2)",
-            borderColor: "rgba(255,99,132,1)",
+            backgroundColor: "rgba(209, 99, 20,0.2)",
+            borderColor: "rgba(209, 99, 20, 1)",
             pointBorderColor: "#fff",
-            pointBackgroundColor: "rgba(255,99,132,1)",
+            pointBackgroundColor: "rgba(209, 99, 20,1)",
             pointBorderColor: "#fff",
             data: [0, 0, 0, 0, 0]
           }]

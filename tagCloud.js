@@ -104,7 +104,7 @@ d3.csv("datasets/TagCloudActors.csv").then(function(data) {
 
 	function wordCloud(selector) {
 
-	  var color = d3.scaleOrdinal(d3.schemeSpectral[9]);
+	  var color ="#d16314";
 		var width = document.getElementById('tagCloud').offsetWidth;
 		var height = document.getElementById('tagCloud').offsetHeight;
 
@@ -132,7 +132,7 @@ d3.csv("datasets/TagCloudActors.csv").then(function(data) {
 	        cloud.enter()
 	            .append("text")
 	            .style("font-family", "Impact")
-	            .style("fill", function(d,i) { return color(i); })
+	            .style("fill", function(d,i) { return color; })
 	        		.style("fill-opacity", 0)
 	            .attr("text-anchor", "middle")
 	            .attr('font-size', 1)
@@ -144,7 +144,7 @@ d3.csv("datasets/TagCloudActors.csv").then(function(data) {
 	            .transition()
 	                .duration(5000)
 	                .style("font-size", function(d) { return d.size + "px"; })
-	        				.style("fill", function(d,i) { return color(i); })
+	        				.style("fill", function(d,i) { return color; })
 	                .attr("transform", function(d) {
 	                    return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
 	                })
