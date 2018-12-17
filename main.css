@@ -58,3 +58,15 @@ div {
   width: 100%;
   background: #fff;
 }
+
+.tooltip {
+    position: absolute;
+    z-index: 10;
+    visibility: hidden;
+    background-color: black;
+    text-align: center;
+    padding: 4px;
+    border-radius: 4px;
+    font-weight: bold;
+    color: white;
+}

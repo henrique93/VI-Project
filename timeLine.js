@@ -33,28 +33,58 @@ d3.csv("datasets/TimeLine.csv").then(function(csv) {
       .on("start brush", brushed)
       .on("end", brushended);
 
+
+
+var tooltip = d3.select("body")
+  .append("div")
+  .attr('class', 'tooltip');
+
+
   var dot = g.append("g")
       .attr("fill-opacity", 1)
       .selectAll("circle")
       .data(data)
       .enter().append("circle")
       .attr("transform", function(d) { return "translate(" + x(d[0]) + "," + y(d[1]) + ")"; })
-      .attr("r", 6) //was 3.5
-      .attr("fill", function(d) {if (d[2] == "Disaster") {return "#e6194B"}
-                                  else if (d[2] == "Economics") {return "#3cb44b"}
-                                  else if (d[2] == "War") {return "#f032e6"}
-                                  else if (d[2] == "Politics") {return "#bfef45"}
-                                  else if (d[2] == "Technology") {return "#f58231"}
-                                  else if (d[2] == "Terrorism") {return "#000075"}
-                                  else if (d[2] == "Death") {return "#9A6324"}
-                                  else if (d[2] == "Crime") {return "#ffe119"}
-                                  else if (d[2] == "Celebration") {return "#911eb4"}
-                                  else if (d[2] == "Space") {return "#800000"}
-
+      .attr("r", 7) //was 3.5
+      .attr("fill", function(d) {if (d[2] == "Disaster") {return "#e6194B" /*vermelho*/}
+                                  else if (d[2] == "Economics") {return "#bfef45" /*verde*/}
+                                  else if (d[2] == "War") {return "#f032e6" /*vermelho*/}
+                                  else if (d[2] == "Politics") {return "#bfef45" /*verde*/}
+                                  else if (d[2] == "Technology") {return "#800000" /*azul*/}
+                                  else if (d[2] == "Terrorism") {return "#e6194B" /*vermelho*/}
+                                  else if (d[2] == "Death") {return "#e6194B" /*vermelho*/}
+                                  else if (d[2] == "Crime") {return "#9A6324" /*castanho*/}
+                                  else if (d[2] == "Celebration") {return "#ffe119" /*amarelo*/}
+                                  else if (d[2] == "Space") {return "#800000" /*azul*/}
       })
       .on("mouseover", function(d) {
-        console.log("Sou um evento!");
-      });
+    return tooltip.style("visibility", "visible").text('DATE: ' + String(d[0]).substring(4, 15) + ', ' + 'TYPE: ' + d[2]);
+  })
+  
+  // we move tooltip during of "mousemove"
+  
+  .on("mousemove", function() {
+    return tooltip.style("top", (event.pageY - 30) + "px")
+      .style("left", event.pageX + "px");
+  })
+  
+  // we hide our tooltip on "mouseout"
+  
+  .on("mouseout", function() {
+    return tooltip.style("visibility", "hidden");
+  });/*
+    // Para debug
+    .on("mouseover", function(d) {
+        console.log("Sou um evento!");        
+        var res = String(d[0]).substring(0, 15);// select importante date 
+        console.log(res); //full date of the evento
+        console.log(d[0]);
+        console.log(d[1]); // 0 ?
+        console.log(d[2]); // tipo do evento
+        console.log(d[3]);
+        console.log(d[4]);
+      });*/
 
   var gBrush = g.append("g")
       .call(brush)
